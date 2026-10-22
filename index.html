@@ -19,10 +19,13 @@ body.soft-blue{--page:#f1f5f7;--line:#d8e1e7;--blue:#7f9aab}body.soft-blue .tool
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .decorative-browser{position:relative;max-width:1064px;height:63px;margin:0 auto;background:#fff;border-bottom:1px solid #dedede;border-radius:24px 24px 0 0;color:#8b8c8b;pointer-events:none;user-select:none;overflow:hidden}
 .sidebar .album-card{height:auto}.sidebar .album-pair{border-bottom:0}
+.sidebar .album-slot-button{display:block;position:relative;width:100%;min-width:0;aspect-ratio:1;overflow:hidden;text-align:left}.sidebar .album-slot-button>.reference-photo,.sidebar .album-slot-button>.uploaded-photo{display:block;width:100%;height:100%;aspect-ratio:1;object-fit:cover}.album-slot-button:focus-visible{outline-offset:2px}.album-slot-add{display:flex;align-items:center;justify-content:center;gap:5px;min-height:31px;border:1px dashed #d9d9d9;border-radius:7px;background:#fafafa;color:#999;font-size:12px;line-height:18px;padding:6px 9px}.album-slot-add:hover{background:#f2f5f6;color:#657b89}.album-slot-add svg{width:15px;height:15px}.album-card>.album-slot-add{width:calc(100% - 24px);margin:0 12px 10px}.album-pair.is-empty{grid-template-columns:1fr}.album-pair.is-empty>.album-slot-add{width:100%;min-height:48px}.photo-manage-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;padding:0 20px 18px}.photo-manage-help{font-size:13px;line-height:1.7;color:#999;text-align:center;padding:0 22px;margin:0 0 15px}.photo-manage-actions .small-button{font-size:13px}.photo-manage-actions .photo-delete-button{color:#a16b6b;border-color:#eadbdb}
 .reference-photo.blank-photo{background:#fff;border:1px solid #eee}.lightbox-image .blank-photo{min-height:260px}
 .stat{min-width:0}.stat-number{display:block;width:100%;min-width:0;height:30px;margin:0;padding:0 3px;border:0;border-radius:5px;background:transparent;color:var(--ink);font-family:Arial,"Microsoft YaHei",sans-serif;font-size:25px;font-weight:600;line-height:30px;text-align:center;cursor:text;outline:none}.stat-number:focus{background:#f0f4f7;box-shadow:0 1px 0 #bfcbd4}.stat-label{display:block;font-size:17px;color:#777;line-height:23px}.stat-label:hover{color:#333}@media(max-width:700px){.stat-number{font-size:22px}.stat-label{font-size:15px}}
 .album-photo-button{display:block;width:100%;text-align:left}.album-caption{padding:10px 12px;background:linear-gradient(#fafafa,#f5f5f5);border-top:1px solid var(--line)}.album-caption-input{display:block;width:100%;height:48px;min-height:48px;margin:0;padding:5px 8px;border:1px solid #e4e4e4;border-radius:7px;background:#fff;color:#666;font-family:inherit;font-size:14px;line-height:18px;resize:none;overflow:hidden;overflow-wrap:anywhere;white-space:pre-wrap;transition:border-color .15s}.album-caption-input::placeholder{color:#b9b9b9}.album-caption-input:focus{border-color:#b9c9d3;outline:none}.album-photo-button:focus-visible{outline-offset:-4px}
 .page-export-dialog[open]{display:flex;flex-direction:column}.page-export-dialog .dialog-header,.page-export-dialog .dialog-footer{flex-shrink:0}.page-export-dialog .dialog-body{min-height:0;overflow:auto}
+.lightbox[open]{display:flex;flex-direction:column}.lightbox .dialog-header,.lightbox .dialog-footer{flex-shrink:0}.lightbox .dialog-body{min-height:0;overflow:auto}.lightbox .dialog-footer{border-top:1px solid #eee;justify-content:center;padding:14px 20px}.lightbox .photo-manage-actions{width:100%;padding:0}.lightbox .photo-manage-actions button{min-height:36px}
+.sidebar .album-pair.is-empty{display:none}.album-pair.is-empty+.album-slot-add{margin-top:12px}
 .page-export-dialog{width:900px}.image-export-layout{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:24px;align-items:start}.image-export-preview{min-width:0}.image-export-canvas{position:relative;min-height:440px;padding:12px;display:flex;align-items:center;justify-content:center;border:1px solid #e6e6e6;border-radius:10px;background:#f1f1f1;overflow:hidden}.image-export-canvas.is-transparent{background:repeating-conic-gradient(#e5e5e5 0 25%,#fafafa 0 50%) 0 0/16px 16px}.image-export-canvas>img{display:block;max-width:100%;max-height:440px;width:auto;height:auto;object-fit:contain}.image-export-loading{position:absolute;left:50%;bottom:15px;transform:translateX(-50%);white-space:nowrap;padding:8px 14px;border-radius:20px;background:#fffffff2;color:#888;font-size:13px;box-shadow:0 1px 7px #0000000a}.image-export-dimensions{font-size:12px;color:#999;text-align:center;line-height:1.6;margin:10px 0 0;overflow-wrap:anywhere}.image-export-options fieldset{padding:0;margin:0 0 21px;border:0}.image-export-options legend{font-size:14px;color:#666;margin-bottom:9px;padding:0}.image-export-modes{display:grid;grid-template-columns:repeat(3,1fr);background:#f2f2f2;border-radius:8px;padding:3px;gap:3px}.page-export-dialog .image-export-modes label{position:relative;display:block;margin:0;color:#888;cursor:pointer}.page-export-dialog .image-export-modes label>input{position:absolute;width:1px;height:1px;opacity:0;margin:0;padding:0;border:0}.image-export-modes label>span{display:block;text-align:center;padding:8px 1px;font-size:13px;white-space:nowrap;border-radius:6px;border:1px solid transparent}.image-export-modes input:checked+span{background:white;color:#252525;border-color:#e1e1e1;box-shadow:0 1px 3px #00000005}.image-export-modes input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}.page-export-dialog .image-export-color{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:#777;margin-bottom:14px;gap:8px}.image-export-color-value{display:flex;align-items:center;gap:8px;font-family:Arial,sans-serif;font-size:12px;color:#999}.page-export-dialog .image-export-color-value input[type=color]{display:block;width:32px;height:29px;padding:2px;border:1px solid #ddd;border-radius:5px;margin:0;background:var(--card);cursor:pointer;flex-shrink:0}.image-export-transparency{background:#f7f7f7;border:1px solid #eee;border-radius:8px;font-size:13px;color:#888;line-height:1.7;padding:12px;margin:0 0 16px}.page-export-dialog .image-export-range{font-size:14px;margin:20px 0 18px;color:#777}.image-export-range>span{display:flex;flex-direction:column;align-items:stretch;gap:7px;margin-top:8px}.image-export-range output{font-family:Arial,sans-serif;font-size:12px;color:#999;text-align:right}.page-export-dialog .image-export-range input[type=range]{width:100%;height:17px;padding:0;border:0;margin:0;accent-color:var(--blue);cursor:pointer;background:transparent}.page-export-dialog .image-export-quality{font-size:14px;margin-bottom:19px}.page-export-dialog .image-export-quality select{font-size:14px;padding:8px}.image-export-reset{width:100%;font-size:13px}.image-export-note{font-size:12px;line-height:1.8;color:#aaa;margin:15px 0 0}.image-export-error{font-size:13px;color:#b45353;line-height:1.7;margin:13px 0 0;overflow-wrap:anywhere}.page-export-dialog .dialog-footer{border-top:1px solid #eee;padding:17px 22px}.page-export-dialog .dialog-footer button{font-size:14px}.page-export-dialog .dialog-footer svg{width:16px;height:16px;margin-right:4px}.page-export-dialog #image-export-download{min-width:151px}
 @media(max-width:700px){.image-export-layout{grid-template-columns:1fr;gap:22px}.image-export-canvas{min-height:260px;max-height:320px}.image-export-canvas>img{max-height:290px}.image-export-options{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}.image-export-options fieldset{grid-column:1/-1;margin:0}.image-export-options #image-export-colors,.image-export-options #image-export-transparency{grid-column:1/-1}.image-export-options #image-export-colors{display:flex;gap:18px;flex-wrap:wrap}.image-export-options .image-export-color{flex:1;min-width:130px;margin:0}.page-export-dialog .image-export-range,.page-export-dialog .image-export-quality{margin:0}.image-export-reset,.image-export-note,.image-export-error{grid-column:1/-1}.image-export-note{margin-top:0}.page-export-dialog .dialog-body{padding:17px}.image-export-options legend{margin-bottom:8px}}
 .browser-dots{position:absolute;top:25px;left:2.35%;display:flex;gap:9px}.browser-dots i{display:block;width:14px;height:14px;border-radius:50%;background:#f0c3d0;box-shadow:0 0 2px #00000012}.browser-dots i:nth-child(2){background:#a9d6ec}.browser-dots i:nth-child(3){background:#999d9e}
@@ -547,6 +550,22 @@ OTHER DEALINGS IN THE SOFTWARE.
   const storageKey = 'pyon.nyang.home.v1';
   const defaultDecorativeAddress='shanshanbigkinglove666.com';
   const defaultStats={journal:'2',visitors:'11',photos:'5'};
+  // Fixed slot IDs keep replacements, captions, and persisted deletions independent of gallery order.
+  const createAlbumSlots=()=>Array.from({length:4},(_,slot)=>({id:`slot-${slot}`,slot,reference:slot,title:`空白照片 ${slot+1}`}));
+  function normalizeAlbumSlots(value){
+    const blanks=createAlbumSlots();
+    if(!Array.isArray(value))return blanks;
+    return blanks.map((blank,slot)=>{
+      const photo=value[slot];
+      if(photo===null)return null;
+      if(photo&&typeof photo==='object'&&typeof photo.src==='string'&&/^data:image\/(png|jpeg|webp|gif);base64,/i.test(photo.src))return {id:blank.id,slot,src:photo.src,title:String(photo.title||`照片 ${slot+1}`).slice(0,200),created:Number(photo.created)||0};
+      return blank;
+    });
+  }
+  function normalizeAlbumSlotTrash(value){
+    const normalized=normalizeAlbumSlots(value);
+    return normalized.map((photo,slot)=>Array.isArray(value)&&value[slot]&&typeof value[slot]==='object'?photo:null);
+  }
   const previousPinnedText = '主页美化随意更新\n主要只发扣扣 大范围公开会上传相关小手机社区/njg\n不要问我相关问题 可以点击标签/搜索\n美化有问题可以在扣扣/这个平台：sx/plq\n留言没回复不是针对 也许没看到 不要多想\n然后就是我的一些三次属\n李相沅 | 金奎彬 | 前田陆\n女团博爱 有隐属 大部分无雷\n\n请不要一上来就用命令语气和我沟通\n我人很好相处的\n但是如果你不礼貌我也会很不礼貌的 -᷅_ -᷄\n\n以上就是我@pyon.nyang_';
   const pinnedText='这一切都太过沉重。\n我们一起离开这里，一起穿过偏执的命运、萧条封锁的幻觉和轻飘飘的爱。然后飞翔、飞翔、绕过大山、江流、眼泪、灵魂和寥寥几笔的所有。\n亲爱的，宇宙只是一只小鸟，但小鸟是我们。我们一起飞向一个充满相信和温暖的地方好不好。';
   const defaultEditorLines=['我们不要在这里，','跟我回去十八岁。','躲到台大校园杜鹃花从下，','不要被命运找到。'];
@@ -554,7 +573,7 @@ OTHER DEALINGS IN THE SOFTWARE.
   const defaultState = () => ({
     profile:{name:'mountain',mood:'我的羽毛也很重，不要对着我哭了。',bio:'你好，我是山山',avatar:''},
     posts:[{id:'welcome',text:pinnedText,pinned:true,created:0,comments:[]}],
-    photos:[],messages:[],drafts:[],currentDraft:null,editorStyle:{},albumCaptions:['',''],stats:{...defaultStats},contentPreset:'mountain-v1',settings:{theme:'default',compact:false,profilePublic:false,albumPublic:true,decorativeAddress:defaultDecorativeAddress}
+    photos:[],albumSlots:createAlbumSlots(),albumSlotTrash:[null,null,null,null],messages:[],drafts:[],currentDraft:null,editorStyle:{},albumCaptions:['',''],stats:{...defaultStats},contentPreset:'mountain-v1',settings:{theme:'default',compact:false,profilePublic:false,albumPublic:true,decorativeAddress:defaultDecorativeAddress}
   });
   let state;
   try {state = JSON.parse(localStorage.getItem(storageKey)) || defaultState();} catch {state = defaultState();}
@@ -573,15 +592,23 @@ OTHER DEALINGS IN THE SOFTWARE.
     state.contentPreset='mountain-v1';
   }
   state.albumCaptions=Array.isArray(state.albumCaptions)?[String(state.albumCaptions[0]??''),String(state.albumCaptions[1]??'')]:['',''];
+  state.albumSlots=normalizeAlbumSlots(state.albumSlots);
+  state.albumSlotTrash=normalizeAlbumSlotTrash(state.albumSlotTrash);
   state.stats=Object.fromEntries(Object.entries(defaultStats).map(([key,fallback])=>[key,/^\d{1,9}$/.test(String(state.stats?.[key]??''))?String(state.stats[key]):fallback]));
   let tab = 'journal', filter = 'all', search = '', sort = 'newest', savedRange, lightboxIndex = 0, editingPost = null;
   const commentAttachments = new Map(), commentDrafts = new Map();
-  let wallDraft = '';
-  const defaultPhotoSlots=Array.from({length:4},(_,i)=>({reference:i,id:`ref-${i}`,title:`空白照片 ${i+1}`}));
-  const allPhotos = () => [...defaultPhotoSlots,...state.photos];
+  let wallDraft = '',removedPhoto=null;
+  const allPhotos = () => [...state.albumSlots.filter(Boolean),...state.photos];
   const photoMarkup = (photo, extra = '') => photo.reference !== undefined
     ? `<span class="reference-photo blank-photo ${extra}" role="img" aria-label="${escape(photo.title)}"></span>`
-    : `<img class="uploaded-photo ${extra}" src="${photo.src}" alt="${escape(photo.title)}">`;
+    : `<img class="uploaded-photo ${extra}" src="${escape(photo.src)}" alt="${escape(photo.title)}">`;
+  function sidebarAlbumMarkup(){
+    return [0,2].map((start,group)=>{
+      const photos=state.albumSlots.slice(start,start+2).filter(Boolean),missing=2-photos.length;
+      return `<div class="album-card card"><div class="album-pair${photos.length===1?' is-single':photos.length===0?' is-empty':''}"${!photos.length?' data-export-exclude':''}>${photos.map(photo=>`<button type="button" class="album-photo-button album-slot-button" data-album-slot="${photo.slot}" title="点击替换或删除${escape(photo.title)}" aria-label="管理${escape(photo.title)}">${photoMarkup(photo)}</button>`).join('')}</div>${missing?`<button type="button" class="album-slot-add" data-restore-album-group="${group}" data-export-exclude>＋ 恢复已删除的位置</button>`:''}<div class="album-caption"><textarea class="album-caption-input" data-album-caption="${group}" rows="2" maxlength="500" aria-label="第 ${group+1} 组相册文字" placeholder="给这组照片写点什么…">${escape(state.albumCaptions[group])}</textarea></div></div>`;
+    }).join('');
+  }
+  function renderSidebarAlbums(){const container=$('#sidebar-albums');if(container){container.innerHTML=sidebarAlbumMarkup();resizeAlbumCaptions();}}
   const avatar = (className, interactive = false) => `<${interactive?'button':'span'} class="avatar ${className}" ${interactive?'type="button" data-action="profile" title="编辑头像和个人资料" aria-label="编辑头像和个人资料"':''}>${state.profile.avatar?`<img src="${state.profile.avatar}" alt="个人头像">`:''}</${interactive?'button':'span'}>`;
   function save(){
     try {localStorage.setItem(storageKey,JSON.stringify(state));return true;}
@@ -620,7 +647,7 @@ OTHER DEALINGS IN THE SOFTWARE.
         <div class="stat"><input class="stat-number" id="journal-count" data-stat="journal" aria-label="日志数量" title="点击修改日志数量，自动保存" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" autocomplete="off" value="${escape(state.stats.journal)}"><button class="stat-label" data-tab="journal">日志</button></div><div class="stat"><input class="stat-number" id="visitor-count" data-stat="visitors" aria-label="访客数量" title="点击修改访客数量，自动保存" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" autocomplete="off" value="${escape(state.stats.visitors)}"><button class="stat-label" data-action="visitors">访客</button></div><div class="stat"><input class="stat-number" id="photo-count" data-stat="photos" aria-label="照片数量" title="点击修改照片数量，自动保存" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" autocomplete="off" value="${escape(state.stats.photos)}"><button class="stat-label" data-tab="album">照片</button></div>
       </div><section class="sidebar-section"><div class="section-heading"><h2>个人档案</h2><button class="visibility" id="profile-visibility" data-action="profile-visibility" title="切换档案可见范围">${icon('eyeOff')}<span>仅部分可见</span></button></div><button class="bio card" data-action="profile" title="编辑个人档案" style="width:100%;text-align:left"><p id="bio-text"></p></button></section>
       <section class="sidebar-section album-section"><div class="section-heading album-heading"><h2><button data-tab="album">相册</button></h2><button class="visibility" id="album-visibility" data-action="album-visibility" title="切换相册可见范围">${icon('eye')}<span>所有人可见</span></button></div>
-        ${[0,2].map((start,i)=>`<div class="album-card card"><button class="album-photo-button" data-photo="${start}" title="打开相册 · 第 ${i+1} 组" aria-label="查看第 ${i+1} 组照片"><span class="album-pair">${photoMarkup(defaultPhotoSlots[start])}${photoMarkup(defaultPhotoSlots[start+1])}</span></button><div class="album-caption"><textarea class="album-caption-input" data-album-caption="${i}" rows="2" maxlength="500" aria-label="第 ${i+1} 组相册文字" placeholder="给这组照片写点什么…">${escape(state.albumCaptions[i])}</textarea></div></div>`).join('')}
+        <div id="sidebar-albums">${sidebarAlbumMarkup()}</div>
       </section></aside></div></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
       <dialog id="dialog"></dialog><input type="file" id="file-input" accept="image/*" hidden><input type="file" id="album-input" accept="image/*" multiple hidden>`;
     if(state.currentDraft!==null) $('#editor').innerHTML = sanitize(state.currentDraft);
@@ -675,7 +702,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     if(tab==='album')renderAlbum();if(tab==='wall')renderWall();closeMenus();
   }
   function renderAlbum(){
-    const photos=allPhotos();$('#album-view').innerHTML=`<section class="section-panel card"><div class="panel-heading"><div><h2>我的相册</h2><span class="subtle">${photos.length} 张珍藏的瞬间</span></div><button class="small-button" data-action="upload-album">＋ 上传照片</button></div><div class="album-grid">${photos.map((p,i)=>`<button class="gallery-item" data-photo="${i}" aria-label="查看${escape(p.title)}">${photoMarkup(p)}<span class="photo-caption">${escape(p.title)}</span></button>`).join('')}</div></section>`;
+    const photos=allPhotos();$('#album-view').innerHTML=`<section class="section-panel card"><div class="panel-heading"><div><h2>我的相册</h2><span class="subtle">${photos.length} 张照片与留白</span></div><button class="small-button" data-action="upload-album">＋ 上传照片</button></div>${photos.length?`<div class="album-grid">${photos.map((p,i)=>`<button class="gallery-item" data-photo="${i}" aria-label="查看${escape(p.title)}">${photoMarkup(p)}<span class="photo-caption">${escape(p.title)}</span></button>`).join('')}</div>`:'<p class="note-empty">相册还是空的，可以上传照片，或在侧栏恢复已删除的位置。</p>'}</section>`;
   }
   function renderWall(){
     $('#wall-view').innerHTML=`<section class="section-panel card"><div class="panel-heading"><h2>留言板</h2><span class="subtle">${state.messages.length} 条留言</span></div><form class="wall-form" id="wall-form"><textarea name="message" placeholder="路过的话，留下点什么吧…" maxlength="1000" aria-label="留言内容" required>${escape(wallDraft)}</textarea><div class="wall-form-footer"><span>温柔的话，总会被看见。</span><button class="small-button primary" type="submit">留下留言</button></div></form><div>${state.messages.length?state.messages.map(m=>`<article class="wall-note"><div class="wall-note-header"><strong>来访的朋友</strong><span><time>${formatTime(m.created)}</time><button class="comment-delete" data-delete-message="${m.id}" aria-label="删除留言">×</button></span></div><p>${escape(m.text)}</p></article>`).join(''):'<div class="note-empty">还没有留言，来写第一条吧 ♡</div>'}</div></section>`;
@@ -735,9 +762,51 @@ OTHER DEALINGS IN THE SOFTWARE.
     }catch(error){if($('#image-export-error')){$('#image-export-error').textContent=`图片保存失败：${error.message}`;$('#image-export-error').hidden=false;}}
     finally{imageExportBusy=false;form.inert=false;if(button.isConnected){button.disabled=false;button.innerHTML=icon('download')+' 保存 PNG 图片';}}
   }
+  function refreshPhotos(){renderSidebarAlbums();renderAlbum();}
+  function openPhotoById(id){const index=allPhotos().findIndex(photo=>photo.id===id);if(index>=0)openLightbox(index);else toast('这张照片已经删除');}
+  function replacePhoto(id){
+    return chooseFile((src,file)=>{
+      const current=allPhotos().find(photo=>photo.id===id);
+      if(!current){toast('这个位置已删除，请先恢复后再替换');return;}
+      const replacement={id:current.id,src,title:(file.name||'我的照片').replace(/\.[^.]+$/,'').slice(0,200)||'我的照片',created:Date.now()};
+      if(current.slot!==undefined)replacement.slot=current.slot;
+      if(!commit(()=>{if(current.slot!==undefined){state.albumSlots[current.slot]=replacement;state.albumSlotTrash[current.slot]=null;}else{const index=state.photos.findIndex(photo=>photo.id===id);state.photos[index]=replacement;}}))return;
+      refreshPhotos();openPhotoById(id);toast('照片已替换并保存');
+    });
+  }
+  function confirmDeletePhoto(id){
+    const photo=allPhotos().find(item=>item.id===id);if(!photo)return;
+    const slot=photo.slot!==undefined;
+    openDialog(slot?'删除照片位置':'删除照片',`<p class="dialog-help photo-manage-help">${slot?'确定删除这个照片位置吗？边框也会一起移除，下面的文字会保留。以后可点击“恢复已删除的位置”找回。':'确定删除这张照片吗？删除后可以立即撤销。'}</p>`,`<button class="small-button" data-open-photo="${escape(id)}">取消</button><button class="small-button primary" data-confirm-delete-photo="${escape(id)}">确认删除</button>`);
+  }
+  function deletePhoto(id){
+    const photos=allPhotos(),photo=photos.find(item=>item.id===id);if(!photo)return false;
+    const index=state.photos.findIndex(item=>item.id===id),slot=photo.slot;
+    if(!commit(()=>{if(slot!==undefined){state.albumSlotTrash[slot]=photo;state.albumSlots[slot]=null;}else state.photos=state.photos.filter(item=>item.id!==id);}))return false;
+    removedPhoto={photo,index,slot};refreshPhotos();
+    openDialog(slot!==undefined?'位置已删除':'照片已删除',`<p class="dialog-help photo-manage-help">${slot!==undefined?'已移除这个位置和边框，原照片保存在本机，随时可以恢复。':'这张照片已经从相册移除。'}</p>`,`<button class="small-button" data-action="close-dialog">完成</button><button class="small-button primary" data-action="undo-delete-photo">撤销删除</button>`);
+    toast(slot!==undefined?'照片位置已删除，文字已保留':'照片已删除');return true;
+  }
+  function restoreAlbumGroup(group){
+    if(!Number.isInteger(group)||group<0||group>1)return false;
+    const slots=[group*2,group*2+1].filter(slot=>state.albumSlots[slot]===null);
+    if(!slots.length)return false;
+    const blanks=createAlbumSlots();
+    if(!commit(()=>{for(const slot of slots){state.albumSlots[slot]=state.albumSlotTrash[slot]||blanks[slot];state.albumSlotTrash[slot]=null;}}))return false;
+    refreshPhotos();toast('照片位置已恢复');return true;
+  }
+  function undoDeletedPhoto(){
+    if(!removedPhoto)return;
+    const {photo,index,slot}=removedPhoto;
+    if(slot!==undefined&&state.albumSlots[slot]!==null){toast('这个位置已经有照片了');return;}
+    if(!commit(()=>{if(slot!==undefined){state.albumSlots[slot]=state.albumSlotTrash[slot]||photo;state.albumSlotTrash[slot]=null;}else if(!state.photos.some(item=>item.id===photo.id))state.photos.splice(Math.max(0,index),0,photo);}))return;
+    removedPhoto=null;refreshPhotos();openPhotoById(photo.id);toast('照片已恢复');
+  }
   function openLightbox(index){
-    lightboxIndex=(index+allPhotos().length)%allPhotos().length;const photos=allPhotos(),p=photos[lightboxIndex];
-    openDialog('相册',`<div class="lightbox-body"><button class="lightbox-nav prev" data-action="previous-photo" aria-label="上一张">${icon('left')}</button><div class="lightbox-image">${photoMarkup(p)}</div><button class="lightbox-nav next" data-action="next-photo" aria-label="下一张">${icon('right')}</button></div><div class="lightbox-caption">${escape(p.title)} · ${lightboxIndex+1} / ${photos.length}</div>${p.reference===undefined?`<div style="text-align:center"><button class="small-button" data-delete-photo="${p.id}">删除这张照片</button></div>`:''}`,'','lightbox');
+    const photos=allPhotos();
+    if(!photos.length){lightboxIndex=0;openDialog('相册','<p class="dialog-help photo-manage-help">还没有照片，可以上传新照片，或在侧栏恢复已删除的位置。</p>',`${cancelButton}<button class="small-button primary" data-action="upload-album">上传照片</button>`);return;}
+    lightboxIndex=((Number(index)||0)%photos.length+photos.length)%photos.length;const p=photos[lightboxIndex];
+    openDialog('相册',`<div class="lightbox-body"><button class="lightbox-nav prev" data-action="previous-photo" aria-label="上一张" ${photos.length<2?'disabled':''}>${icon('left')}</button><div class="lightbox-image">${photoMarkup(p)}</div><button class="lightbox-nav next" data-action="next-photo" aria-label="下一张" ${photos.length<2?'disabled':''}>${icon('right')}</button></div><div class="lightbox-caption">${escape(p.title)} · ${lightboxIndex+1} / ${photos.length}</div><p class="photo-manage-help">${p.reference!==undefined?'这是一个空白照片位置，可以替换为自己的照片，也可以连同边框一起删除。':p.slot!==undefined?'替换或删除只会修改当前这个位置，下面的相册文字会保留。':'可以替换这张照片，或将它从相册删除。'}</p>`,`<div class="photo-manage-actions"><button class="small-button primary" data-replace-photo="${escape(p.id)}">替换照片</button><button class="small-button" data-delete-photo="${escape(p.id)}">${p.slot!==undefined?'删除这个位置':'删除这张照片'}</button></div>`,'lightbox');
     $('.lightbox .dialog-body').style.padding='0';
   }
   function rememberSelection(){const sel=window.getSelection();if(sel.rangeCount&&$('#editor').contains(sel.anchorNode))savedRange=sel.getRangeAt(0).cloneRange();}
@@ -754,7 +823,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     const img=await new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=()=>reject(new Error('暂不支持这种图片格式'));im.src=src;});
     const scale=Math.min(1,1000/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);return canvas.toDataURL('image/jpeg',.82);
   }
-  function chooseFile(handler){const input=$('#file-input');input.value='';input.onchange=async()=>{if(!input.files[0])return;try{await handler(await imageData(input.files[0]),input.files[0]);}catch(error){toast(error.message);}};input.click();}
+  function chooseFile(handler){const input=$('#file-input');input.value='';input.onchange=async()=>{const file=input.files[0];if(!file)return;try{await handler(await imageData(file),file);}catch(error){toast(error.message);}};input.click();}
   function publish(){
     const ed=$('#editor'),html=sanitize(ed.innerHTML),text=ed.innerText.trim();if(!text&&!ed.querySelector('img')){toast('先写一点内容吧');ed.focus();return;}
     if(text.length>20000){toast('日志正文请控制在 20000 字以内');return;}
@@ -771,7 +840,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     link:()=>{rememberSelection();const sel=window.getSelection()?.toString()||'';openDialog('插入链接',`<form id="link-form"><label>显示文字<input name="text" value="${escape(sel)}" placeholder="链接文字" required maxlength="200"></label><label>链接地址<input name="url" type="url" placeholder="https://" required></label></form>`,`${cancelButton}<button class="small-button primary" form="link-form" type="submit">插入链接</button>`);},
     'avatar-upload':()=>chooseFile(src=>{if(commit(()=>state.profile.avatar=src)){updateProfile();toast('头像已更新');}}),
     'upload-album':()=>$('#album-input').click(),
-    'previous-photo':()=>openLightbox(lightboxIndex-1),'next-photo':()=>openLightbox(lightboxIndex+1),
+    'previous-photo':()=>openLightbox(lightboxIndex-1),'next-photo':()=>openLightbox(lightboxIndex+1),'undo-delete-photo':undoDeletedPhoto,
     'profile-visibility':()=>{state.settings.profilePublic=!state.settings.profilePublic;save();updateProfile();toast(`档案显示为${state.settings.profilePublic?'所有人可见':'仅部分可见'}`);},
     'album-visibility':()=>{state.settings.albumPublic=!state.settings.albumPublic;save();updateProfile();toast(`相册显示为${state.settings.albumPublic?'所有人可见':'仅自己可见'}`);},
     visitors:()=>openDialog('访客记录',`<p style="font-size:36px;text-align:center;margin:10px 0">${escape(state.stats.visitors)}</p><p class="dialog-help" style="text-align:center">当前设置的访客数，可直接点击侧栏数字修改。</p>`),
@@ -781,7 +850,12 @@ OTHER DEALINGS IN THE SOFTWARE.
     document.addEventListener('click',e=>{
       const action=e.target.closest('[data-action]');if(action){actions[action.dataset.action]?.();return;}
       const tabButton=e.target.closest('[data-tab]');if(tabButton){switchTab(tabButton.dataset.tab);return;}
+      const slotButton=e.target.closest('[data-album-slot]');if(slotButton){const photo=state.albumSlots[Number(slotButton.dataset.albumSlot)];if(photo)openPhotoById(photo.id);return;}
+      const restoreSlots=e.target.closest('[data-restore-album-group]');if(restoreSlots){restoreAlbumGroup(Number(restoreSlots.dataset.restoreAlbumGroup));return;}
       const photo=e.target.closest('[data-photo]');if(photo){openLightbox(Number(photo.dataset.photo));return;}
+      const openPhoto=e.target.closest('[data-open-photo]');if(openPhoto){openPhotoById(openPhoto.dataset.openPhoto);return;}
+      const replace=e.target.closest('[data-replace-photo]');if(replace){replacePhoto(replace.dataset.replacePhoto);return;}
+      const confirmPhoto=e.target.closest('[data-confirm-delete-photo]');if(confirmPhoto){deletePhoto(confirmPhoto.dataset.confirmDeletePhoto);return;}
       const fmt=e.target.closest('[data-command]');if(fmt){command(fmt.dataset.command);return;}
       const f=e.target.closest('[data-filter]');if(f){filter=f.dataset.filter;$('#filter-label').textContent=f.textContent;renderFeed();closeMenus();return;}
       const del=e.target.closest('[data-delete-post]');if(del){const id=del.dataset.deletePost;openDialog('删除日志','<p class="dialog-help">确定删除这篇日志和它的评论吗？</p>',`${cancelButton}<button class="small-button primary" data-confirm-delete="${id}">删除日志</button>`);return;}
@@ -793,7 +867,7 @@ OTHER DEALINGS IN THE SOFTWARE.
       const ld=e.target.closest('[data-load-draft]');if(ld){const draft=state.drafts.find(d=>d.id===ld.dataset.loadDraft);editingPost=null;savedRange=null;switchTab('journal');$('#editor').innerHTML=sanitize(draft.html);$('#editor').style.fontSize=draft.style?.fontSize||'';$('#editor').style.fontFamily=draft.style?.fontFamily||'';persistEditor();$('#dialog').close();$('#editor').focus();toast('草稿已载入');return;}
       const dd=e.target.closest('[data-delete-draft]');if(dd){state.drafts=state.drafts.filter(d=>d.id!==dd.dataset.deleteDraft);save();openDrafts();return;}
       const dm=e.target.closest('[data-delete-message]');if(dm){state.messages=state.messages.filter(m=>m.id!==dm.dataset.deleteMessage);save();renderWall();return;}
-      const dp=e.target.closest('[data-delete-photo]');if(dp){state.photos=state.photos.filter(p=>p.id!==dp.dataset.deletePhoto);save();updateProfile();renderAlbum();$('#dialog').close();toast('照片已删除');return;}
+      const dp=e.target.closest('[data-delete-photo]');if(dp){confirmDeletePhoto(dp.dataset.deletePhoto);return;}
       if(!e.target.closest('.more-wrap')&&!e.target.closest('.feed-controls'))closeMenus();
     });
     $('#more-toggle').addEventListener('click',()=>{const menu=$('#more-menu');menu.hidden=!menu.hidden;$('#more-toggle').setAttribute('aria-expanded',String(!menu.hidden));});
