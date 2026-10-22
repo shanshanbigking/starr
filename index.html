@@ -111,6 +111,68 @@ body.soft-blue{--page:#f1f5f7;--line:#d8e1e7;--blue:#7f9aab}body.soft-blue .tool
 .post .comment-area{padding-top:10px}
 .post .post-bubble{padding-bottom:4px}
 .post .post-meta{order:0;margin-top:6px}
+
+/* Replies are separate outgoing messages, outside the journal bubble. */
+.post>.comment-area{grid-column:1/-1;min-width:0;padding-top:12px}
+.post>.comment-area .comment-list{gap:12px}
+.post>.comment-area .comment-item{flex-direction:row-reverse;gap:14px;border:0;padding:0;min-width:0}
+.post>.comment-area .comment-avatar{flex-basis:44px;width:44px;height:44px;border-radius:7px;margin-top:1px}
+.post>.comment-area .comment-face{border-radius:7px}
+.post>.comment-area .comment-body{position:relative;flex:0 1 auto;width:fit-content;max-width:calc(100% - 82px);min-width:0;padding:11px 14px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.post>.comment-area .comment-body:before,.post>.comment-area .comment-body:after{content:"";position:absolute;top:15px;right:-11px;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--line)}
+.post>.comment-area .comment-body:after{right:-9px;border-left-color:var(--card);border-left-width:10px}
+.post>.comment-area .comment-header{gap:16px;flex-wrap:wrap}
+.post>.comment-area .comment-header .comment-time{max-width:100%;font-size:10px;line-height:20px}
+.post>.comment-area .comment-image{max-width:min(240px,100%);height:auto}
+.post>.comment-area .comment-delete{margin:11px 0 0;color:#aaa}
+.post>.comment-area .comment-form{margin-left:min(120px,20%);margin-top:12px;background:var(--card)}
+.post>.comment-area .comment-list:empty+.comment-form{margin-top:0}
+@media(max-width:580px){.post>.comment-area .comment-avatar{flex-basis:34px;width:34px;height:34px}.post>.comment-area .comment-item{gap:12px}.post>.comment-area .comment-body{max-width:calc(100% - 68px);padding:10px 12px}.post>.comment-area .comment-form{margin-left:53px}}
+
+/* Match the wall panel to the sidebar height while the columns sit side by side. */
+@media(min-width:581px){
+.columns>.main-column:has(>#wall-view:not([hidden])){align-self:stretch;display:flex;flex-direction:column}
+.main-column>#wall-view:not([hidden]){display:flex;flex:1;min-width:0}
+.main-column>#wall-view>.section-panel{flex:1;min-width:0}
+.columns:has(>.main-column>#wall-view:not([hidden])) #sidebar-albums>.album-card:last-child{margin-bottom:0}
+}
+
+.home-intro-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.home-intro-heading h2{flex:1;min-width:0}
+.home-intro [data-home-intro]{white-space:pre-wrap;overflow-wrap:anywhere;min-height:1.4em;cursor:text}
+.home-intro-heading .small-button{font-size:12px;padding:5px 9px;flex-shrink:0}
+.wall-form-footer{justify-content:flex-end}
+.image-export-modes{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+#image-export-custom{margin-bottom:18px;grid-column:1/-1;min-width:0}
+.image-export-upload{display:block;font-size:14px;color:#777}
+.image-export-upload input{display:block;width:100%;margin-top:9px;font-size:12px}
+#image-export-background-thumbnail{display:block;width:100%;height:95px;object-fit:cover;margin-top:12px;border-radius:8px}
+
+.comment-style-controls{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:-5px 0 14px;color:#888;font-size:12px}
+.comment-style-controls select{border:1px solid var(--line);border-radius:7px;padding:5px 8px;background:var(--card);color:var(--ink);font-size:12px;max-width:100%;cursor:pointer}
+.post-bubble>.comment-area .comment-header{flex-wrap:wrap}
+.post-bubble>.comment-area .comment-image{max-width:min(180px,100%)}
+
+/* Outgoing comments: name above the bubble, date under the right avatar. */
+.post>.comment-area .outgoing-comment{gap:14px;padding-left:66px}
+.post>.comment-area .outgoing-author{flex:0 0 64px;min-width:0;padding-top:0;text-align:center}
+.post>.comment-area .outgoing-author .comment-avatar{margin:0 auto}
+.post>.comment-area .comment-date{display:block;width:100%;margin-top:4px;text-align:center;color:#aaa;font-size:9px;line-height:15px;overflow-wrap:anywhere}
+.post>.comment-area .outgoing-message{position:relative;flex:0 1 auto;min-width:0;max-width:calc(100% - 78px);margin-top:25px}
+.post>.comment-area .outgoing-name{width:44px;max-width:100%;margin:0 auto 5px;text-align:right;font-size:12px;line-height:20px;color:#888;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.post>.comment-area .outgoing-message .outgoing-bubble-wrap>.comment-body{width:auto;max-width:100%;min-width:0;padding:8px 10px}
+.post>.comment-area .outgoing-message .comment-text{margin:0}
+.post>.comment-area .outgoing-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px;min-height:12px}
+.post>.comment-area .comment-clock{color:#aaa;font-size:9px;line-height:12px;text-align:left;white-space:nowrap}
+.post>.comment-area .outgoing-footer>.comment-delete{margin:0;font-size:9px;line-height:12px;color:#aaa;flex-shrink:0}
+@media(max-width:580px){.post>.comment-area .outgoing-author{flex-basis:58px}.post>.comment-area .outgoing-comment{gap:12px}.post>.comment-area .outgoing-message{max-width:calc(100% - 70px)}}
+.post>.comment-area .comment-read{position:absolute;right:calc(100% + 6px);bottom:3px;display:inline-flex;align-items:baseline;color:#aaa;font-size:9px;line-height:12px;white-space:nowrap}
+@media(max-width:580px){.post>.comment-area .outgoing-author .outgoing-name{width:34px}}
+
+.post-author .post-avatar{width:92%;height:auto;aspect-ratio:1;margin-left:auto;margin-right:auto}
+.post>.comment-area .outgoing-bubble-wrap{position:relative;min-width:0}
+.post>.comment-area .outgoing-actions{display:flex;justify-content:flex-end;margin-top:3px;line-height:12px}
+.post>.comment-area .outgoing-actions>.comment-delete{margin:0;font-size:9px;line-height:12px;color:#aaa}
 </style></head>
 <body>
   <div class="decorative-browser" role="group" aria-label="装饰地址栏">
@@ -187,7 +249,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 
   function settings(options = {}) {
     return {
-      background: ['gradient', 'solid', 'transparent'].includes(options.background) ? options.background : 'gradient',
+      background: ['gradient', 'solid', 'transparent', 'custom'].includes(options.background) ? options.background : 'gradient',
+      backgroundImage: /^data:image\/(png|jpeg|webp|gif);base64,/i.test(options.backgroundImage || '') ? options.backgroundImage : '',
       color1: color(options.color1, '#bdbdbd'),
       color2: color(options.color2, '#ffffff'),
       padding: Math.round(clamp(options.padding, 0, 400, 108)),
@@ -442,7 +505,7 @@ OTHER DEALINGS IN THE SOFTWARE.
       // Adjust only the export clone; every live comment form stays usable.
       const exportPosts = [...clonedShell.querySelectorAll('#feed > .post')];
       for (const post of exportPosts) {
-        post.querySelectorAll('.comment-form,.comment-attachment').forEach(element => element.remove());
+        post.querySelectorAll('.comment-form,.comment-attachment,.comment-delete').forEach(element => element.remove());
         const area = post.querySelector('.comment-area');
         if (area && !area.querySelector('.comment-item')) area.remove();
       }
@@ -542,6 +605,12 @@ OTHER DEALINGS IN THE SOFTWARE.
     });
   }
 
+  function coverImageRect(imageWidth, imageHeight, width, height) {
+    const ratio = Math.max(width / imageWidth, height / imageHeight);
+    const drawnWidth = imageWidth * ratio, drawnHeight = imageHeight * ratio;
+    return { x: (width - drawnWidth) / 2, y: (height - drawnHeight) / 2, width: drawnWidth, height: drawnHeight };
+  }
+
   async function capture(options = {}) {
     const config = settings(options);
     if (document.fonts?.ready) await document.fonts.ready;
@@ -566,7 +635,16 @@ OTHER DEALINGS IN THE SOFTWARE.
       context.scale(config.scale, config.scale);
       context.imageSmoothingEnabled = true;
       context.imageSmoothingQuality = 'high';
-      if (config.background !== 'transparent') {
+      if (config.background === 'custom') {
+        if (!config.backgroundImage) throw fail('请先添加背景图片');
+        const backgroundImage = new Image();
+        backgroundImage.src = config.backgroundImage;
+        await waitForImage(backgroundImage);
+        const crop = coverImageRect(backgroundImage.naturalWidth, backgroundImage.naturalHeight, width, height);
+        context.fillStyle = config.color1;
+        context.fillRect(0, 0, width, height);
+        context.drawImage(backgroundImage, crop.x, crop.y, crop.width, crop.height);
+      } else if (config.background !== 'transparent') {
         if (config.background === 'gradient') {
           const gradient = context.createLinearGradient(0, 0, 0, height);
           gradient.addColorStop(0, config.color1);
@@ -662,15 +740,16 @@ OTHER DEALINGS IN THE SOFTWARE.
   const defaultEditorLines=['我们不要在这里，','跟我回去十八岁。','躲到台大校园杜鹃花从下，','不要被命运找到。'];
   const defaultEditorHtml=defaultEditorLines.map(line=>`<div>${escape(line)}</div>`).join('');
   const defaultState = () => ({
+    homeIntro:{title:'欢迎来到我的小小世界',text:'一些日常，一些喜欢，还有留给你的空白。'},
     profile:{name:'mountain',handle:'name',mood:'我的羽毛也很重，不要对着我哭了。',bio:'你好，我是山山',avatar:''},
     posts:[{id:'welcome',text:pinnedText,pinned:true,created:0,comments:[]}],
-    photos:[],albumSlots:createAlbumSlots(),albumSlotTrash:[null,null,null,null],messages:[],drafts:[],currentDraft:null,editorStyle:{},albumCaptions:['',''],stats:{...defaultStats},contentPreset:'mountain-v1',settings:{theme:'default',compact:false,profilePublic:false,albumPublic:true,decorativeAddress:defaultDecorativeAddress}
+    photos:[],albumSlots:createAlbumSlots(),albumSlotTrash:[null,null,null,null],messages:[],drafts:[],currentDraft:null,editorStyle:{},albumCaptions:['',''],stats:{...defaultStats},contentPreset:'mountain-v1',settings:{commentLayout:'outgoing',theme:'default',compact:false,profilePublic:false,albumPublic:true,decorativeAddress:defaultDecorativeAddress}
   });
   let state;
   try {state = JSON.parse(localStorage.getItem(storageKey)) || defaultState();} catch {state = defaultState();}
   const previousPreset=state.contentPreset;
   const defaults = defaultState();
-  state = {...defaults,...state,profile:{...defaults.profile,...state.profile},settings:{...defaults.settings,...state.settings}};
+  state = {...defaults,...state,homeIntro:{...defaults.homeIntro,...state.homeIntro},profile:{...defaults.profile,...state.profile},settings:{...defaults.settings,...state.settings}};
   const migrateDefaults=previousPreset!=='mountain-v1';
   if(migrateDefaults){
     const previousProfile={name:'pyon.nyang_',mood:'首尔天气好嘛?',bio:'你好 可以叫我灰色/笨笨\nISFP* 我是一个i人\nIP.YOU.♥'};
@@ -721,10 +800,10 @@ OTHER DEALINGS IN THE SOFTWARE.
           </div></div>
         </nav></div></header>
       <div class="columns"><section class="main-column" aria-label="主页内容"><div id="journal-view">
-        <div class="card home-intro" id="home-intro" hidden><h2>欢迎来到我的小小世界</h2><p>一些日常，一些喜欢，还有留给你的空白。</p></div>
+        <div class="card home-intro" id="home-intro" hidden><div class="home-intro-heading"><h2 contenteditable="true" role="textbox" aria-label="主页欢迎标题" data-home-intro="title">${escape(state.homeIntro.title)}</h2><button type="button" class="small-button" data-action="export-home" data-export-exclude>${icon('download')} 导出主页</button></div><p contenteditable="true" role="textbox" aria-multiline="true" aria-label="主页欢迎语" data-home-intro="text">${escape(state.homeIntro.text)}</p></div>
         <section class="composer card" aria-label="写一篇日志"><div class="toolbar" role="toolbar" aria-label="日志编辑工具" tabindex="0" title="空间不足时可左右滑动工具栏">
           <select id="text-alignment" class="alignment-select" title="文字排版" aria-label="文字排版"><option value="center">居中</option><option value="left">顶格</option></select>
-          <select id="font-size" title="字号" aria-label="字号"><option>10</option><option selected>12</option><option>14</option><option>16</option><option>18</option><option>24</option></select>
+          <select id="font-size" title="字号" aria-label="字号"><option>6</option><option>8</option><option>10</option><option selected>12</option><option>14</option><option>16</option><option>18</option><option>24</option></select>
           <button class="tool font-tool" data-action="font" title="切换字体" aria-label="切换字体">T</button>
           <label class="color-label" title="文字颜色"><span id="color-dot"></span><input id="font-color" type="color" value="#38445b" aria-label="文字颜色"></label><span class="tool-divider"></span>
           <button class="tool" data-command="bold" title="加粗 (Ctrl+B)" aria-label="加粗"><b>B</b></button><button class="tool italic" data-command="italic" title="斜体 (Ctrl+I)" aria-label="斜体">I</button><button class="tool underline" data-command="underline" title="下划线 (Ctrl+U)" aria-label="下划线">U</button><button class="tool strike" data-command="strikeThrough" title="删除线" aria-label="删除线">S</button><span class="tool-divider"></span>
@@ -735,7 +814,7 @@ OTHER DEALINGS IN THE SOFTWARE.
         <div class="feed-controls card"><button class="feed-select" id="feed-toggle" aria-expanded="false"><span id="filter-label">我的全部日志</span>${icon('down')}</button><div class="feed-actions"><button class="icon-button page-export-trigger" data-action="export-page" title="导出页面图片" aria-label="导出页面图片">${icon('download')}</button><button class="icon-button" id="refresh-feed" title="刷新日志" aria-label="刷新日志">${icon('refresh')}</button><button class="icon-button" id="search-toggle" title="搜索与排序" aria-label="搜索与排序" aria-expanded="false">${icon('filter')}</button></div>
           <div class="popover filter-menu" id="filter-menu" hidden><button data-filter="all">我的全部日志</button><button data-filter="mine">我发布的日志</button><button data-filter="pinned">置顶日志</button><button data-action="drafts">草稿箱</button></div>
         </div><div class="search-controls card" id="search-controls" hidden><input id="post-search" type="search" placeholder="搜索日志内容…" aria-label="搜索日志"><select id="sort-posts" aria-label="日志排序"><option value="newest">最新在前</option><option value="oldest">最早在前</option></select></div>
-        <div class="feed" id="feed" aria-live="polite"></div></div><div id="album-view" hidden></div><div id="wall-view" hidden></div>
+        <div class="comment-style-controls" data-export-exclude><label for="comment-layout">评论样式</label><select id="comment-layout" aria-label="评论样式"><option value="inline">气泡内评论</option><option value="outgoing">右侧消息气泡</option></select></div><div class="feed" id="feed" aria-live="polite"></div></div><div id="album-view" hidden></div><div id="wall-view" hidden></div>
       </section><aside class="sidebar" aria-label="个人档案和相册"><div class="stats card">
         <div class="stat"><input class="stat-number" id="journal-count" data-stat="journal" aria-label="日志数量" title="点击修改日志数量，自动保存" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" autocomplete="off" value="${escape(state.stats.journal)}"><button class="stat-label" data-tab="journal">日志</button></div><div class="stat"><input class="stat-number" id="visitor-count" data-stat="visitors" aria-label="访客数量" title="点击修改访客数量，自动保存" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" autocomplete="off" value="${escape(state.stats.visitors)}"><button class="stat-label" data-action="visitors">访客</button></div><div class="stat"><input class="stat-number" id="photo-count" data-stat="photos" aria-label="照片数量" title="点击修改照片数量，自动保存" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="9" autocomplete="off" value="${escape(state.stats.photos)}"><button class="stat-label" data-tab="album">照片</button></div>
       </div><section class="sidebar-section"><div class="section-heading"><h2>个人档案</h2><button class="visibility" id="profile-visibility" data-action="profile-visibility" title="切换档案可见范围">${icon('eyeOff')}<span>仅部分可见</span></button></div><button class="bio card" data-action="profile" title="编辑个人档案" style="width:100%;text-align:left"><p id="bio-text"></p></button></section>
@@ -793,10 +872,22 @@ OTHER DEALINGS IN THE SOFTWARE.
     $('#album-visibility').innerHTML=icon(state.settings.albumPublic?'eye':'eyeOff')+`<span>${state.settings.albumPublic?'所有人可见':'仅自己可见'}</span>`;
     syncEditableStats();
   }
+  function commentDateParts(comment){
+    let date=new Date(comment.created??Date.now());if(Number.isNaN(date.getTime()))date=new Date();
+    const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(date).map(part=>[part.type,part.value]));
+    const legacy=String(comment.displayTime||''),clock=legacy.match(/(\d{1,2}):(\d{2})/);
+    const legacyDate=legacy.match(/(?:(\d{4})年)?(\d{1,2})月(\d{1,2})日/);
+    const dateText=legacyDate?[legacyDate[1]||parts.year,legacyDate[2].padStart(2,'0'),legacyDate[3].padStart(2,'0')].join('·'):[parts.year,parts.month,parts.day].join('·');
+    return {date:comment.displayDate||dateText,clock:comment.displayClock||(clock?clock[1].padStart(2,'0')+':'+clock[2]:parts.hour+':'+parts.minute)};
+  }
   function commentMarkup(comment,postId){
     const name=comment.author||'我',time=comment.displayTime||formatTime(comment.created),photo=comment.avatar||state.profile.avatar;
     const safePhoto=/^data:image\/(png|jpeg|webp|gif);base64,/i.test(photo||'')?photo:'';
-    return `<div class="comment-item"><button type="button" class="comment-avatar" data-comment-avatar="${escape(comment.id)}" data-post="${escape(postId)}" title="点击更换评论头像" aria-label="更换评论头像"><span class="comment-face">${safePhoto?`<img src="${escape(safePhoto)}" alt="评论头像">`:''}</span></button><div class="comment-body"><div class="comment-header"><button type="button" class="comment-author" data-edit-comment="${escape(comment.id)}" data-post="${escape(postId)}" title="修改昵称和时间">${escape(name)}</button><button type="button" class="comment-time" data-edit-comment="${escape(comment.id)}" data-post="${escape(postId)}" title="修改显示时间，例如一年前、一个月前、23:37">${escape(time)}</button></div><p class="comment-text">${escape(comment.text)}</p>${comment.image?`<img class="comment-image" src="${escape(comment.image)}" alt="评论图片">`:''}</div><button type="button" class="comment-delete" data-delete-comment="${escape(comment.id)}" data-post="${escape(postId)}" aria-label="删除评论">×</button></div>`;
+    if(state.settings.commentLayout!=='inline'){
+      const stamp=commentDateParts(comment);
+      return `<div class="comment-item outgoing-comment"><div class="outgoing-author"><button type="button" class="comment-author outgoing-name" data-edit-comment="${escape(comment.id)}" data-post="${escape(postId)}" title="修改评论昵称">${escape(name)}</button><button type="button" class="comment-avatar" data-comment-avatar="${escape(comment.id)}" data-post="${escape(postId)}" title="点击更换评论头像" aria-label="更换评论头像"><span class="comment-face">${safePhoto?`<img src="${escape(safePhoto)}" alt="评论头像">`:''}</span></button><button type="button" class="comment-date" data-edit-comment="${escape(comment.id)}" data-post="${escape(postId)}" aria-label="修改评论日期">${escape(stamp.date)}</button></div><div class="outgoing-message"><div class="outgoing-bubble-wrap"><span class="comment-read">已读·<button type="button" class="comment-clock" data-edit-comment="${escape(comment.id)}" data-post="${escape(postId)}" aria-label="修改评论时分">${escape(stamp.clock)}</button></span><div class="comment-body"><p class="comment-text">${escape(comment.text)}</p>${comment.image?`<img class="comment-image" src="${escape(comment.image)}" alt="评论图片">`:''}</div></div><div class="outgoing-actions" data-export-exclude><button type="button" class="comment-delete" data-export-exclude data-delete-comment="${escape(comment.id)}" data-post="${escape(postId)}" aria-label="删除评论">删除</button></div></div></div>`;
+    }
+    return `<div class="comment-item"><button type="button" class="comment-avatar" data-comment-avatar="${escape(comment.id)}" data-post="${escape(postId)}" title="点击更换评论头像" aria-label="更换评论头像"><span class="comment-face">${safePhoto?`<img src="${escape(safePhoto)}" alt="评论头像">`:''}</span></button><div class="comment-body"><div class="comment-header"><button type="button" class="comment-author" data-edit-comment="${escape(comment.id)}" data-post="${escape(postId)}" title="修改昵称和时间">${escape(name)}</button><button type="button" class="comment-time" data-edit-comment="${escape(comment.id)}" data-post="${escape(postId)}" title="修改显示时间，例如一年前、一个月前、23:37">${escape(time)}</button></div><p class="comment-text">${escape(comment.text)}</p>${comment.image?`<img class="comment-image" src="${escape(comment.image)}" alt="评论图片">`:''}</div><button type="button" class="comment-delete" data-export-exclude data-delete-comment="${escape(comment.id)}" data-post="${escape(postId)}" aria-label="删除评论">×</button></div>`;
   }
   function openPostTimeEditor(postId){
     const post=state.posts.find(item=>item.id===postId);if(!post)return;
@@ -804,12 +895,22 @@ OTHER DEALINGS IN THE SOFTWARE.
   }
   function openCommentEditor(postId,commentId){
     const comment=state.posts.find(post=>post.id===postId)?.comments.find(item=>item.id===commentId);if(!comment)return;
-    openDialog('编辑评论信息',`<form id="comment-info-form" data-post="${escape(postId)}" data-comment="${escape(commentId)}"><label>评论昵称<input name="author" value="${escape(comment.author||'我')}" maxlength="50" required></label><label>显示时间<input name="displayTime" value="${escape(comment.displayTime||formatTime(comment.created))}" maxlength="60" placeholder="例如：一年前、一个月前、昨天23:37、14:30"></label><p class="dialog-help">时间可以填写任意文字，留空则显示原始发布时间。点击评论旁的小头像可上传自己的图片。</p></form>`,`${cancelButton}<button class="small-button primary" form="comment-info-form" type="submit">保存</button>`);
+    const stamp=commentDateParts(comment),outgoing=state.settings.commentLayout!=='inline';
+    openDialog('编辑评论信息',`<form id="comment-info-form" data-post="${escape(postId)}" data-comment="${escape(commentId)}"><label>评论昵称<input name="author" value="${escape(comment.author||'我')}" maxlength="50" required></label>${outgoing?`<label>头像下方日期<input name="displayDate" value="${escape(stamp.date)}" maxlength="60" placeholder="例如：2026·10·22"></label><label>气泡左下角时间<input name="displayClock" value="${escape(stamp.clock)}" maxlength="20" placeholder="例如：19:04"></label>`:`<label>显示时间<input name="displayTime" value="${escape(comment.displayTime||formatTime(comment.created))}" maxlength="60" placeholder="例如：一年前、一个月前、昨天23:37、14:30"></label>`}<p class="dialog-help">日期和时间均可自行修改，留空则使用原始时间。点击头像可更换图片。</p></form>`,`${cancelButton}<button class="small-button primary" form="comment-info-form" type="submit">保存</button>`);
+  }
+  function setCommentLayout(value){
+    const layout=value==='inline'?'inline':'outgoing';
+    if(!commit(()=>{state.settings.commentLayout=layout;})){
+      $('#comment-layout').value=state.settings.commentLayout==='inline'?'inline':'outgoing';return;
+    }
+    renderFeed();
   }
   function renderFeed(){
+    const inlineComments=state.settings.commentLayout==='inline';
+    $('#comment-layout').value=inlineComments?'inline':'outgoing';
     let posts=state.posts.filter(p=>(filter!=='mine'||!p.pinned)&&(filter!=='pinned'||p.pinned)&&(!search||(p.text||'').toLowerCase().includes(search.toLowerCase())));
     posts=[...posts].sort((a,b)=>Number(!!b.pinned)-Number(!!a.pinned)||(sort==='oldest'?a.created-b.created:b.created-a.created));
-    $('#feed').innerHTML=posts.length?posts.map((post,index)=>`<article class="post ${post.pinned?'pinned':''}" data-post-id="${post.id}"><div class="post-author">${avatar('post-avatar')}<button type="button" class="post-time-edit post-author-time" data-edit-post-time="${escape(post.id)}" title="修改日志日期和时间" aria-label="修改日志日期和时间">${escape(post.displayDate||'2002·11·05')}</button></div><div class="post-bubble card"><div class="post-content"${post.pinned?' contenteditable="true" role="textbox" aria-multiline="true" aria-label="置顶日志正文"  data-editable-post="'+post.id+'"':''}>${post.html?sanitize(post.html):escape(post.text)}</div><div class="post-meta"><button type="button" class="post-clock" data-edit-post-time="${escape(post.id)}" title="修改日志日期和时间" aria-label="修改日志具体时间">${escape(post.displayClock||'11:05')}</button><div class="post-tools" data-export-exclude>${!post.pinned?`<button data-edit-post="${post.id}">编辑</button>`:''}<button data-delete-post="${post.id}">删除</button></div></div><div class="comment-area"><div class="comment-list">${post.comments.map(comment=>commentMarkup(comment,post.id)).join('')}</div><form class="comment-form" data-export-exclude data-comment-for="${post.id}"><input name="comment" aria-label="添加评论" placeholder="Add Comments..." autocomplete="off" maxlength="1000"><button type="button" data-comment-image="${post.id}" aria-label="为评论添加图片" title="添加图片">${icon('image')}</button><button type="submit" title="发送评论" aria-label="发送评论">${icon('send')}</button></form><div class="comment-attachment" data-export-exclude data-attachment-for="${post.id}" hidden></div></div></div></article>`).join(''):'<div class="card empty-state">没有找到相关日志</div>';
+    $('#feed').innerHTML=posts.length?posts.map((post,index)=>`<article class="post ${post.pinned?'pinned':''}" data-post-id="${post.id}"><div class="post-author">${avatar('post-avatar')}<button type="button" class="post-time-edit post-author-time" data-edit-post-time="${escape(post.id)}" title="修改日志日期和时间" aria-label="修改日志日期和时间">${escape(post.displayDate||'2002·11·05')}</button></div><div class="post-bubble card"><div class="post-content"${post.pinned?' contenteditable="true" role="textbox" aria-multiline="true" aria-label="置顶日志正文"  data-editable-post="'+post.id+'"':''}>${post.html?sanitize(post.html):escape(post.text)}</div><div class="post-meta"><button type="button" class="post-clock" data-edit-post-time="${escape(post.id)}" title="修改日志日期和时间" aria-label="修改日志具体时间">${escape(post.displayClock||'11:05')}</button><div class="post-tools" data-export-exclude>${!post.pinned?`<button data-edit-post="${post.id}">编辑</button>`:''}<button data-delete-post="${post.id}">删除</button></div></div>${inlineComments?'':'</div>'}<div class="comment-area"><div class="comment-list">${post.comments.map(comment=>commentMarkup(comment,post.id)).join('')}</div><form class="comment-form" data-export-exclude data-comment-for="${post.id}"><input name="comment" aria-label="添加评论" placeholder="Add Comments..." autocomplete="off" maxlength="1000"><button type="button" data-comment-image="${post.id}" aria-label="为评论添加图片" title="添加图片">${icon('image')}</button><button type="submit" title="发送评论" aria-label="发送评论">${icon('send')}</button></form><div class="comment-attachment" data-export-exclude data-attachment-for="${post.id}" hidden></div></div>${inlineComments?'</div>':''}</article>`).join(''):'<div class="card empty-state">没有找到相关日志</div>';
     for(const [id,text] of commentDrafts){const input=$(`[data-comment-for="${id}"] input`);if(input)input.value=text;}
     for(const [id,src] of commentAttachments){const area=$(`[data-attachment-for="${id}"]`);if(area){area.hidden=false;area.innerHTML=`<img src="${src}" alt="待发送图片"><span>图片已添加</span><button type="button" data-remove-attachment="${id}">×</button>`;}}
     updateProfile();
@@ -833,7 +934,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     openDialog('修改留言昵称',`<form id="wall-author-form" data-message="${escape(messageId)}"><label>留言昵称<input name="author" value="${escape(message.author||'来访的朋友')}" maxlength="50" required></label><p class="dialog-help">点击留言旁的头像，可以上传自己的图片。</p></form>`,`${cancelButton}<button class="small-button primary" type="submit" form="wall-author-form">保存</button>`);
   }
   function renderWall(){
-    $('#wall-view').innerHTML=`<section class="section-panel card"><div class="panel-heading"><h2>留言板</h2><div class="wall-heading-actions"><span class="subtle">${state.messages.length} 条留言</span><button type="button" class="small-button" data-action="export-wall" data-export-exclude>${icon('download')} 导出图片</button></div></div><form class="wall-form" id="wall-form" data-export-exclude><textarea name="message" placeholder="路过的话，留下点什么吧…" maxlength="1000" aria-label="留言内容" required>${escape(wallDraft)}</textarea><div class="wall-form-footer"><span>温柔的话，总会被看见。</span><button class="small-button primary" type="submit">留下留言</button></div></form><div>${state.messages.length?state.messages.map(wallNoteMarkup).join(''):'<div class="note-empty">还没有留言，来写第一条吧 ♡</div>'}</div></section>`;
+    $('#wall-view').innerHTML=`<section class="section-panel card"><div class="panel-heading"><h2>留言板</h2><div class="wall-heading-actions"><span class="subtle">${state.messages.length} 条留言</span><button type="button" class="small-button" data-action="export-wall" data-export-exclude>${icon('download')} 导出图片</button></div></div><form class="wall-form" id="wall-form" data-export-exclude><textarea name="message" placeholder="路过的话，留下点什么吧…" maxlength="1000" aria-label="留言内容" required>${escape(wallDraft)}</textarea><div class="wall-form-footer"><button class="small-button primary" type="submit">留下留言</button></div></form><div>${state.messages.length?state.messages.map(wallNoteMarkup).join(''):'<div class="note-empty">还没有留言，来写第一条吧 ♡</div>'}</div></section>`;
   }
   function openDialog(title,body,footer='',className=''){
     const d=$('#dialog');if(d.open)d.close();d.className=className;d.innerHTML=`<div class="dialog-header"><h2 id="dialog-title">${title}</h2><button class="icon-button" data-action="close-dialog" aria-label="关闭">${icon('close')}</button></div><div class="dialog-body">${body}</div>${footer?`<div class="dialog-footer">${footer}</div>`:''}`;d.setAttribute('aria-labelledby','dialog-title');d.showModal();closeMenus();
@@ -841,26 +942,42 @@ OTHER DEALINGS IN THE SOFTWARE.
   const cancelButton='<button class="small-button" data-action="close-dialog">取消</button>';
   function openProfile(){openDialog('个人资料',`<form id="profile-form"><label>昵称<input name="name" value="${escape(state.profile.name)}" maxlength="40" required></label><label>用户名（@name）<input name="handle" value="${escape(state.profile.handle)}" maxlength="40" placeholder="name" required></label><label>个性签名<input name="mood" value="${escape(state.profile.mood)}" maxlength="100"></label><label>个人档案<textarea name="bio" maxlength="500">${escape(state.profile.bio)}</textarea></label><button type="button" class="small-button" data-action="avatar-upload">${icon('image')} 更换头像</button></form>`,`${cancelButton}<button class="small-button primary" type="submit" form="profile-form">保存资料</button>`);}
   function openDrafts(){openDialog('草稿箱',state.drafts.length?state.drafts.map(d=>`<div class="draft-row"><p>${escape(d.text||'图片日志')}</p><button data-load-draft="${d.id}">继续编辑</button><button data-delete-draft="${d.id}">删除</button></div>`).join(''):'<p class="dialog-help">还没有暂存的草稿。写下心情后，点击“暂存草稿”即可收好。</p>');}
-  function openSettings(){openDialog('主页设置',`<form id="settings-form"><label>页面配色<select name="theme"><option value="default" ${state.settings.theme==='default'?'selected':''}>参考图 · 经典灰白</option><option value="blue" ${state.settings.theme==='blue'?'selected':''}>雾蓝 · 清浅心情</option></select></label><label class="toggle-row">日志使用紧凑字号<input type="checkbox" name="compact" ${state.settings.compact?'checked':''}></label><p class="dialog-help">你的日志、草稿、评论和照片会保存在当前浏览器。可从“更多”导出数据备份。</p></form>`,`${cancelButton}<button class="small-button primary" form="settings-form" type="submit">保存设置</button>`);}
-  const imageExportDefaults={background:'gradient',color1:'#bdbdbd',color2:'#ffffff',padding:108,scale:4};
+  function openSettings(){openDialog('主页设置',`<form id="settings-form"><label>页面配色<select name="theme"><option value="default" ${state.settings.theme==='default'?'selected':''}>参考图 · 经典灰白</option><option value="blue" ${state.settings.theme==='blue'?'selected':''}>雾蓝 · 清浅心情</option></select></label><label>评论样式<select name="commentLayout"><option value="inline" ${state.settings.commentLayout==='inline'?'selected':''}>气泡内评论</option><option value="outgoing" ${state.settings.commentLayout!=='inline'?'selected':''}>右侧消息气泡</option></select></label><label class="toggle-row">日志使用紧凑字号<input type="checkbox" name="compact" ${state.settings.compact?'checked':''}></label><p class="dialog-help">你的日志、草稿、评论和照片会保存在当前浏览器。可从“更多”导出数据备份。</p></form>`,`${cancelButton}<button class="small-button primary" form="settings-form" type="submit">保存设置</button>`);}
+  const imageExportDefaults={backgroundImage:'',background:'gradient',color1:'#bdbdbd',color2:'#ffffff',padding:108,scale:4};
   let imageExportOptions={...imageExportDefaults,...state.settings.imageExport},imageExportRevision=0,imageExportUrl=null,imageExportTimer,imageExportBusy=false,imageExportPage='journal';
   // Upgrade the old two-times export preference once, while keeping later choices.
   const upgradedImageExport=state.settings.imageExportQualityVersion!==2;
   if(upgradedImageExport){imageExportOptions.scale=Math.max(4,Number(imageExportOptions.scale)||4);state.settings.imageExportQualityVersion=2;state.settings.imageExport={...imageExportOptions};}
+  function imageExportPageLabel(){return imageExportPage==='wall'?'留言板':imageExportPage==='home'?'主页':'日志';}
   function openImageExport(page='journal'){
     if(imageExportBusy){toast('上一张图片正在生成，请稍等片刻');return;}
-    imageExportPage=page==='wall'?'wall':'journal';
+    imageExportPage=['wall','home'].includes(page)?page:'journal';
     switchTab(imageExportPage);
-    openDialog(imageExportPage==='wall'?'导出留言板页面':'导出日志页面',`<div class="image-export-layout"><section class="image-export-preview" aria-label="导出图片预览"><div class="image-export-canvas" id="image-export-canvas"><img id="image-export-preview" alt="${imageExportPage==='wall'?'留言板':'日志'}页面导出预览" hidden><div class="image-export-loading" id="image-export-loading" role="status">正在生成预览…</div></div><p class="image-export-dimensions" id="image-export-dimensions">包括顶部装饰栏、${imageExportPage==='wall'?'已发布留言':'日志内容'}、个人档案与相册</p></section><form id="image-export-form" class="image-export-options"><fieldset><legend>背景样式</legend><div class="image-export-modes">${[['gradient','渐变'],['solid','纯色'],['transparent','无背景']].map(([value,label])=>`<label><input type="radio" name="background" value="${value}" ${imageExportOptions.background===value?'checked':''}><span>${label}</span></label>`).join('')}</div></fieldset><div id="image-export-colors"><label class="image-export-color"><span id="image-export-color1-label">上方颜色</span><span class="image-export-color-value"><input type="color" name="color1" aria-label="背景颜色一" value="${escape(imageExportOptions.color1)}"><span id="image-export-color1-value">${escape(imageExportOptions.color1)}</span></span></label><label class="image-export-color" id="image-export-color2-row"><span>下方颜色</span><span class="image-export-color-value"><input type="color" name="color2" aria-label="背景颜色二" value="${escape(imageExportOptions.color2)}"><span id="image-export-color2-value">${escape(imageExportOptions.color2)}</span></span></label></div><p class="image-export-transparency" id="image-export-transparency" hidden>保存为透明 PNG，保留网页本体，外围不添加背景。</p><label class="image-export-range">外围留白<span><output id="image-export-padding-value">${imageExportOptions.padding} px</output><input type="range" name="padding" aria-label="外围留白" min="0" max="160" step="4" value="${imageExportOptions.padding}"></span></label><label class="image-export-quality">图片清晰度<select name="scale" aria-label="图片清晰度"><option value="1" ${imageExportOptions.scale===1?'selected':''}>标准 · 1 倍</option><option value="2" ${imageExportOptions.scale===2?'selected':''}>高清 · 2 倍</option><option value="4" ${imageExportOptions.scale===4?'selected':''}>超清 · 4 倍（推荐）</option><option value="6" ${imageExportOptions.scale===6?'selected':''}>极清 · 6 倍</option></select></label><button class="small-button image-export-reset" type="button" data-action="reset-image-export">恢复参考图背景</button><p class="image-export-note">默认以 4 倍分辨率保存无损 PNG，可选 6 倍。预览为缩略显示，下载后放大查看更清晰；完整内容会保存在一张图片中。</p><p class="image-export-error" id="image-export-error" role="alert" hidden></p></form></div>`,`${cancelButton}<button class="small-button primary" id="image-export-download" data-action="download-page-image">${icon('download')} 保存 PNG 图片</button>`,'page-export-dialog');
+    openDialog('导出'+imageExportPageLabel()+'页面',`<div class="image-export-layout"><section class="image-export-preview" aria-label="导出图片预览"><div class="image-export-canvas" id="image-export-canvas"><img id="image-export-preview" alt="${imageExportPageLabel()}页面导出预览" hidden><div class="image-export-loading" id="image-export-loading" role="status">正在生成预览…</div></div><p class="image-export-dimensions" id="image-export-dimensions">包括顶部装饰栏、${imageExportPage==='wall'?'已发布留言':imageExportPage==='home'?'主页欢迎语与日志内容':'日志内容'}、个人档案与相册</p></section><form id="image-export-form" class="image-export-options"><fieldset><legend>背景样式</legend><div class="image-export-modes">${[['gradient','渐变'],['solid','纯色'],['transparent','无背景'],['custom','自己添加']].map(([value,label])=>`<label><input type="radio" name="background" value="${value}" ${imageExportOptions.background===value?'checked':''}><span>${label}</span></label>`).join('')}</div></fieldset><div id="image-export-custom" hidden><label class="image-export-upload">添加背景图片<input type="file" id="image-export-background-file" accept="image/png,image/jpeg,image/webp,image/gif"></label><img id="image-export-background-thumbnail" alt="自定义背景图片" hidden><p class="image-export-note">图片会等比例铺满外围背景，超出部分居中裁切。</p></div><div id="image-export-colors"><label class="image-export-color"><span id="image-export-color1-label">上方颜色</span><span class="image-export-color-value"><input type="color" name="color1" aria-label="背景颜色一" value="${escape(imageExportOptions.color1)}"><span id="image-export-color1-value">${escape(imageExportOptions.color1)}</span></span></label><label class="image-export-color" id="image-export-color2-row"><span>下方颜色</span><span class="image-export-color-value"><input type="color" name="color2" aria-label="背景颜色二" value="${escape(imageExportOptions.color2)}"><span id="image-export-color2-value">${escape(imageExportOptions.color2)}</span></span></label></div><p class="image-export-transparency" id="image-export-transparency" hidden>保存为透明 PNG，保留网页本体，外围不添加背景。</p><label class="image-export-range">外围留白<span><output id="image-export-padding-value">${imageExportOptions.padding} px</output><input type="range" name="padding" aria-label="外围留白" min="0" max="160" step="4" value="${imageExportOptions.padding}"></span></label><label class="image-export-quality">图片清晰度<select name="scale" aria-label="图片清晰度"><option value="1" ${imageExportOptions.scale===1?'selected':''}>标准 · 1 倍</option><option value="2" ${imageExportOptions.scale===2?'selected':''}>高清 · 2 倍</option><option value="4" ${imageExportOptions.scale===4?'selected':''}>超清 · 4 倍（推荐）</option><option value="6" ${imageExportOptions.scale===6?'selected':''}>极清 · 6 倍</option></select></label><button class="small-button image-export-reset" type="button" data-action="reset-image-export">恢复参考图背景</button><p class="image-export-note">默认以 4 倍分辨率保存无损 PNG，可选 6 倍。预览为缩略显示，下载后放大查看更清晰；完整内容会保存在一张图片中。</p><p class="image-export-error" id="image-export-error" role="alert" hidden></p></form></div>`,`${cancelButton}<button class="small-button primary" id="image-export-download" data-action="download-page-image">${icon('download')} 保存 PNG 图片</button>`,'page-export-dialog');
     const form=$('#image-export-form');
     form.addEventListener('submit',e=>e.preventDefault());
-    form.addEventListener('input',()=>{const values=new FormData(form);imageExportOptions={background:values.get('background'),color1:values.get('color1'),color2:values.get('color2'),padding:Number(values.get('padding')),scale:Number(values.get('scale'))};syncImageExportControls();clearTimeout(imageExportTimer);imageExportRevision++;imageExportTimer=setTimeout(refreshImageExportPreview,240);});
-    $('#dialog .image-export-note').textContent='默认灰白渐变只用于网页外侧，网页本体保持当前配色。'+(imageExportPage==='wall'?'导出全部已发布留言，隐藏留言输入框和操作按钮。':'完整日志内容会保存在一张图片中。');
+    form.addEventListener('input',event=>{if(event.target.type==='file')return;const values=new FormData(form);imageExportOptions={...imageExportOptions,background:values.get('background'),color1:values.get('color1'),color2:values.get('color2'),padding:Number(values.get('padding')),scale:Number(values.get('scale'))};syncImageExportControls();clearTimeout(imageExportTimer);imageExportRevision++;imageExportTimer=setTimeout(refreshImageExportPreview,240);});
+    $('#image-export-background-file').addEventListener('change',async event=>{
+      const file=event.target.files[0];if(!file)return;
+      const input=event.target;input.disabled=true;imageExportRevision++;
+      try{
+        const backgroundImage=await imageData(file);
+        if(!input.isConnected)return;
+        imageExportOptions={...imageExportOptions,background:'custom',backgroundImage};
+        form.elements.background.value='custom';
+        syncImageExportControls();clearTimeout(imageExportTimer);refreshImageExportPreview();
+      }catch(error){if(input.isConnected){$('#image-export-error').textContent=error.message;$('#image-export-error').hidden=false;}}
+      finally{input.disabled=false;input.value='';}
+    });
+    $('#dialog .image-export-options>.image-export-note').textContent='默认灰白渐变只用于网页外侧，网页本体保持当前配色。'+(imageExportPage==='wall'?'导出全部已发布留言，隐藏留言输入框和操作按钮。':imageExportPage==='home'?'主页欢迎语、日志内容与侧栏会一起保存在图片中。':'完整日志内容会保存在一张图片中。');
     syncImageExportControls();refreshImageExportPreview();
   }
   function syncImageExportControls(){
     const mode=imageExportOptions.background;
-    $('#image-export-colors').hidden=mode==='transparent';$('#image-export-color2-row').hidden=mode!=='gradient';$('#image-export-transparency').hidden=mode!=='transparent';
+    $('#image-export-colors').hidden=mode==='transparent'||mode==='custom';
+    $('#image-export-custom').hidden=mode!=='custom';
+    const thumbnail=$('#image-export-background-thumbnail');thumbnail.hidden=!imageExportOptions.backgroundImage;if(imageExportOptions.backgroundImage)thumbnail.src=imageExportOptions.backgroundImage;else thumbnail.removeAttribute('src');
+    $('#image-export-download').disabled=mode==='custom'&&!imageExportOptions.backgroundImage;$('#image-export-color2-row').hidden=mode!=='gradient';$('#image-export-transparency').hidden=mode!=='transparent';
     $('#image-export-color1-label').textContent=mode==='solid'?'背景颜色':'上方颜色';
     $('#image-export-color1-value').textContent=imageExportOptions.color1.toUpperCase();$('#image-export-color2-value').textContent=imageExportOptions.color2.toUpperCase();$('#image-export-padding-value').textContent=`${imageExportOptions.padding} px`;
     $('#image-export-canvas').classList.toggle('is-transparent',mode==='transparent');
@@ -868,6 +985,7 @@ OTHER DEALINGS IN THE SOFTWARE.
   async function refreshImageExportPreview(){
     const revision=++imageExportRevision;
     if(!$('#dialog').open||!$('#dialog').classList.contains('page-export-dialog'))return;
+    if(imageExportOptions.background==='custom'&&!imageExportOptions.backgroundImage){$('#image-export-preview').hidden=true;$('#image-export-loading').hidden=true;$('#image-export-dimensions').textContent='请选择一张背景图片';return;}
     $('#image-export-loading').hidden=false;$('#image-export-error').hidden=true;
     try{
       if(!window.PyonPageExport)throw new Error('导出组件未加载，请刷新页面后重试');
@@ -875,7 +993,7 @@ OTHER DEALINGS IN THE SOFTWARE.
       if(revision!==imageExportRevision||!$('#dialog').open||!$('#image-export-preview'))return;
       const nextUrl=URL.createObjectURL(result.blob),img=$('#image-export-preview');img.src=nextUrl;img.hidden=false;
       if(imageExportUrl)URL.revokeObjectURL(imageExportUrl);imageExportUrl=nextUrl;
-      $('#image-export-dimensions').textContent=`PNG · ${Math.round(result.width/1.5*imageExportOptions.scale)} × ${Math.round(result.height/1.5*imageExportOptions.scale)} 像素 · 完整${imageExportPage==='wall'?'留言板':'日志'}页面`;
+      $('#image-export-dimensions').textContent=`PNG · ${Math.round(result.width/1.5*imageExportOptions.scale)} × ${Math.round(result.height/1.5*imageExportOptions.scale)} 像素 · 完整${imageExportPageLabel()}页面`;
     }catch(error){if(revision===imageExportRevision&&$('#image-export-error')){$('#image-export-error').textContent=`预览生成失败：${error.message}。可点击保存按钮重试。`;$('#image-export-error').hidden=false;}}
     finally{if(revision===imageExportRevision&&$('#image-export-loading'))$('#image-export-loading').hidden=true;}
   }
@@ -889,7 +1007,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     try{
       if(!window.PyonPageExport)throw new Error('请刷新页面后重试');
       const result=await window.PyonPageExport.capture(options);
-      const url=URL.createObjectURL(result.blob),a=document.createElement('a');a.href=url;a.download=`${state.profile.name.replace(/[\\/:*?"<>|]/g,'_')}-${imageExportPage==='wall'?'留言板':'日志页面'}.png`;a.hidden=true;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+      const url=URL.createObjectURL(result.blob),a=document.createElement('a');a.href=url;a.download=`${state.profile.name.replace(/[\\/:*?"<>|]/g,'_')}-${imageExportPageLabel()+'页面'}.png`;a.hidden=true;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
       state.settings.imageExport=options;save();toast('图片已生成，请在下载中保存');
     }catch(error){if($('#image-export-error')){$('#image-export-error').textContent=`图片保存失败：${error.message}`;$('#image-export-error').hidden=false;}}
     finally{imageExportBusy=false;form.inert=false;if(button.isConnected){button.disabled=false;button.innerHTML=icon('download')+' 保存 PNG 图片';}}
@@ -986,7 +1104,7 @@ OTHER DEALINGS IN THE SOFTWARE.
   }
   const actions={
     'reset-page':confirmPageReset,'confirm-reset-page':resetPage,
-    profile:openProfile,settings:openSettings,drafts:openDrafts,'close-dialog':()=>$('#dialog').close(),'export-page':openImageExport,'export-wall':()=>openImageExport('wall'),'reset-image-export':resetImageExport,'download-page-image':downloadPageImage,
+    profile:openProfile,settings:openSettings,drafts:openDrafts,'close-dialog':()=>$('#dialog').close(),'export-page':()=>openImageExport(tab==='home'?'home':'journal'),'export-home':()=>openImageExport('home'),'export-wall':()=>openImageExport('wall'),'reset-image-export':resetImageExport,'download-page-image':downloadPageImage,
     publish,'save-draft':()=>{const ed=$('#editor');if(!ed.innerText.trim()&&!ed.querySelector('img'))return toast('先写一点内容吧');if(commit(()=>state.drafts.unshift({id:uid(),html:sanitize(ed.innerHTML),style:{fontSize:ed.style.fontSize,fontFamily:ed.style.fontFamily,textAlign:ed.style.textAlign},text:ed.innerText.trim(),created:Date.now()})))toast('已暂存到草稿箱');},
     font:()=>{rememberSelection();const ed=restoreSelection(),serif=getComputedStyle(ed).fontFamily.startsWith('Georgia'),family=serif?'Arial, Microsoft YaHei, sans-serif':'Georgia, Noto Serif SC, serif';const sel=window.getSelection();if(!sel.isCollapsed){command('fontName',family);}else{ed.style.fontFamily=family;persistFormattingTarget(ed);}toast(serif?'已切换为无衬线字体':'已切换为衬线字体');},
     'editor-image':()=>chooseFile(src=>{command('insertHTML',`<img src="${src}" alt="日志图片"><br>`);}),
@@ -999,7 +1117,14 @@ OTHER DEALINGS IN THE SOFTWARE.
     visitors:()=>openDialog('访客记录',`<p style="font-size:36px;text-align:center;margin:10px 0">${escape(state.stats.visitors)}</p><p class="dialog-help" style="text-align:center">当前设置的访客数，可直接点击侧栏数字修改。</p>`),
     export:()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='pyon-homepage-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('主页数据已导出');}
   };
+  function persistHomeIntro(event){
+    const field=event.target.closest('[data-home-intro]');if(!field)return;
+    state.homeIntro[field.dataset.homeIntro]=field.innerText;save();
+  }
   function bindEvents(){
+    $('#comment-layout').addEventListener('change',event=>setCommentLayout(event.target.value));
+    $('#home-intro').addEventListener('input',persistHomeIntro);
+    $('#home-intro').addEventListener('paste',event=>{if(!event.target.closest('[data-home-intro]'))return;event.preventDefault();document.execCommand('insertText',false,event.clipboardData.getData('text/plain'));persistHomeIntro(event);});
     document.addEventListener('click',e=>{
       const action=e.target.closest('[data-action]');if(action){actions[action.dataset.action]?.();return;}
       const tabButton=e.target.closest('[data-tab]');if(tabButton){switchTab(tabButton.dataset.tab);return;}
@@ -1056,9 +1181,9 @@ OTHER DEALINGS IN THE SOFTWARE.
       if(e.target.matches('[data-comment-for]')){e.preventDefault();const id=e.target.dataset.commentFor,input=e.target.elements.comment,text=input.value.trim(),image=commentAttachments.get(id);if(!text&&!image){toast('写点评论或添加一张图片吧');input.focus();return;}if(!commit(()=>state.posts.find(p=>p.id===id).comments.push({id:uid(),text,image,created:Date.now()})))return;commentAttachments.delete(id);commentDrafts.delete(id);renderFeed();toast('评论已发送');}
       if(e.target.id==='post-time-form'){e.preventDefault();const post=state.posts.find(item=>item.id===e.target.dataset.post),data=new FormData(e.target),displayDate=String(data.get('displayDate')||'').trim(),displayClock=String(data.get('displayClock')||'').trim();if(!post||!displayDate||!displayClock)return;if(commit(()=>Object.assign(post,{displayDate,displayClock}))){$('#dialog').close();renderFeed();toast('日志日期和时间已保存');}}
       if(e.target.id==='wall-author-form'){e.preventDefault();const form=e.target,author=String(new FormData(form).get('author')||'').trim();if(!author)return;const message=state.messages.find(item=>item.id===form.dataset.message);if(message&&commit(()=>message.author=author)){$('#dialog').close();renderWall();toast('留言昵称已保存');}return;}
-      if(e.target.id==='comment-info-form'){e.preventDefault();const form=e.target,data=new FormData(form),author=String(data.get('author')||'').trim(),displayTime=String(data.get('displayTime')||'').trim();if(!author)return;const comment=state.posts.find(post=>post.id===form.dataset.post)?.comments.find(item=>item.id===form.dataset.comment);if(comment&&commit(()=>Object.assign(comment,{author,displayTime}))){$('#dialog').close();renderFeed();toast('评论信息已保存');}}
+      if(e.target.id==='comment-info-form'){e.preventDefault();const form=e.target,data=new FormData(form),author=String(data.get('author')||'').trim(),displayTime=String(data.get('displayTime')||'').trim();if(!author)return;const comment=state.posts.find(post=>post.id===form.dataset.post)?.comments.find(item=>item.id===form.dataset.comment);const changes={author};if(data.has('displayDate')){changes.displayDate=String(data.get('displayDate')||'').trim();changes.displayClock=String(data.get('displayClock')||'').trim();}else changes.displayTime=displayTime;if(comment&&commit(()=>Object.assign(comment,changes))){$('#dialog').close();renderFeed();toast('评论信息已保存');}}
       if(e.target.id==='profile-form'){e.preventDefault();const f=new FormData(e.target);if(!f.get('name').trim())return;if(!commit(()=>Object.assign(state.profile,{name:f.get('name').trim(),handle:f.get('handle').trim().replace(/^@+/, '')||'name',mood:f.get('mood').trim(),bio:f.get('bio').trim()})))return;updateProfile();$('#dialog').close();toast('个人资料已保存');}
-      if(e.target.id==='settings-form'){e.preventDefault();const f=new FormData(e.target);if(!commit(()=>{state.settings.theme=f.get('theme');state.settings.compact=f.has('compact');}))return;applySettings();$('#dialog').close();toast('主页设置已保存');}
+      if(e.target.id==='settings-form'){e.preventDefault();const f=new FormData(e.target);if(!commit(()=>{state.settings.theme=f.get('theme');state.settings.compact=f.has('compact');state.settings.commentLayout=f.get('commentLayout')==='inline'?'inline':'outgoing';}))return;applySettings();renderFeed();$('#dialog').close();toast('主页设置已保存');}
       if(e.target.id==='link-form'){e.preventDefault();const f=new FormData(e.target),url=f.get('url').trim();if(!/^https?:\/\//i.test(url)){toast('请输入以 https:// 或 http:// 开头的网址');return;}$('#dialog').close();command('insertHTML',`<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(f.get('text'))}</a>`);}
       if(e.target.id==='wall-form'){e.preventDefault();const text=e.target.elements.message.value.trim();if(!text)return;if(!commit(()=>state.messages.unshift({id:uid(),text,created:Date.now()})))return;wallDraft='';renderWall();toast('留言已留下 ♡');}
     });
