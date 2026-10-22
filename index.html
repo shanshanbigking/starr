@@ -37,6 +37,32 @@ body.soft-blue{--page:#f1f5f7;--line:#d8e1e7;--blue:#7f9aab}body.soft-blue .tool
 @media(max-width:900px){.browser-dots{gap:7px}.browser-dots i{width:12px;height:12px}.browser-dots{top:26px}.browser-right-symbols{gap:18px}.decorative-browser svg{width:21px;height:21px}.browser-address{font-size:15px}}
 @media(max-width:700px){.browser-dots{gap:5px}.browser-dots i{width:10px;height:10px}.browser-dots{top:27px}.browser-right-symbols{gap:11px}.decorative-browser svg{width:18px;height:18px}.browser-symbol{width:20px}.browser-address{font-size:13px;padding:0 23px}.decorative-browser .browser-lock{width:11px;height:14px}.decorative-browser .browser-reload{width:17px;height:17px;right:4px}.browser-address-text{gap:4px}}
 @media(max-width:580px){.decorative-browser{height:54px;border-radius:18px 18px 0 0}.browser-dots{left:12px;top:23px;gap:5px}.browser-dots i{width:9px;height:9px}.browser-sidebar,.browser-shield{display:none}.browser-symbol{top:16px;width:17px;height:22px}.browser-back{left:15%}.browser-forward{left:20%;color:#c2c3c1}.browser-address{top:12px;left:27%;width:47%;height:30px;font-size:12px;padding:0 20px}.browser-right-symbols{right:11px;top:16px;gap:10px;height:22px}.browser-right-symbols>svg:nth-child(1),.browser-right-symbols>svg:nth-child(2){display:none}.decorative-browser .browser-lock{width:10px;height:12px}.decorative-browser .browser-reload{width:15px;height:15px}.browser-address-text{gap:3px}}
+
+/* Content-driven cards and journal alignment controls. */
+.post .post-bubble{min-height:0;height:auto}
+.post .comment-area{margin-top:0}
+.post-content[contenteditable]{outline:none;min-height:26px;cursor:text;border-radius:4px}
+.post-content[contenteditable]:focus{box-shadow:0 0 0 2px #3da8ee55}
+.post-edit-hint{font-size:12px;color:#999;margin-top:10px}
+.composer .toolbar{height:auto;min-height:43px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;white-space:nowrap;column-gap:8px;row-gap:0;padding:6px 12px;scrollbar-width:thin;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.composer .toolbar>*{flex-shrink:0}
+.composer .toolbar .tool{min-width:28px}
+.composer .toolbar .toolbar-spacer{flex:1 0 8px;height:auto}
+.composer .toolbar .draft-button,.composer .toolbar .publish-button{margin:0}
+.composer .toolbar .alignment-select{max-width:62px;width:62px;height:25px;font-size:12px;border:1px solid #dedede;border-radius:5px;padding:2px 3px;flex:0 0 62px}
+.comment-item{display:flex;align-items:flex-start;gap:10px;padding:14px 0 0}
+.comment-avatar{display:block;flex:0 0 34px;width:34px;height:34px;border-radius:50%;overflow:hidden}
+.comment-face{display:block;position:relative;width:100%;height:100%;overflow:hidden;border-radius:50%;background:#272727}
+.comment-face:before{content:"";position:absolute;width:40%;height:40%;left:30%;top:14%;border-radius:50%;background:#fff}
+.comment-face:after{content:"";position:absolute;width:88%;height:65%;left:6%;top:61%;border-radius:50% 50% 0 0;background:#fff}
+.comment-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.comment-body{flex:1;min-width:0}
+.comment-author{display:block;max-width:100%;text-align:left;font-size:14px;font-weight:600;line-height:20px;overflow-wrap:anywhere}
+.comment-text{margin:3px 0 0;white-space:pre-wrap;font-size:14px;line-height:1.6}
+.comment-time{display:block;max-width:100%;margin-top:6px;text-align:left;color:#999;font-size:12px;line-height:18px;overflow-wrap:anywhere}
+.comment-author:hover,.comment-time:hover{color:#298dd1}
+.comment-item>.comment-delete{float:none;flex-shrink:0;margin:0 0 0 3px;line-height:20px}
+
 </style></head>
 <body>
   <div class="decorative-browser" role="group" aria-label="装饰地址栏">
@@ -630,14 +656,14 @@ OTHER DEALINGS IN THE SOFTWARE.
         </nav></div></header>
       <div class="columns"><section class="main-column" aria-label="主页内容"><div id="journal-view">
         <div class="card home-intro" id="home-intro" hidden><h2>欢迎来到我的小小世界</h2><p>一些日常，一些喜欢，还有留给你的空白。</p></div>
-        <section class="composer card" aria-label="写一篇日志"><div class="toolbar" role="toolbar" aria-label="日志编辑工具">
+        <section class="composer card" aria-label="写一篇日志"><div class="toolbar" role="toolbar" aria-label="日志编辑工具" tabindex="0" title="空间不足时可左右滑动工具栏">
           <select id="font-size" title="字号" aria-label="字号"><option>10</option><option selected>12</option><option>14</option><option>16</option><option>18</option><option>24</option></select>
           <button class="tool font-tool" data-action="font" title="切换字体" aria-label="切换字体">T</button>
           <label class="color-label" title="文字颜色"><span id="color-dot"></span><input id="font-color" type="color" value="#38445b" aria-label="文字颜色"></label><span class="tool-divider"></span>
           <button class="tool" data-command="bold" title="加粗 (Ctrl+B)" aria-label="加粗"><b>B</b></button><button class="tool italic" data-command="italic" title="斜体 (Ctrl+I)" aria-label="斜体">I</button><button class="tool underline" data-command="underline" title="下划线 (Ctrl+U)" aria-label="下划线">U</button><button class="tool strike" data-command="strikeThrough" title="删除线" aria-label="删除线">S</button><span class="tool-divider"></span>
           <button class="tool" data-command="insertOrderedList" title="有序列表" aria-label="有序列表">${icon('ordered')}</button><button class="tool" data-command="insertUnorderedList" title="无序列表" aria-label="无序列表">${icon('list')}</button><span class="tool-divider"></span>
           <button class="tool" data-action="editor-image" title="插入图片" aria-label="插入图片">${icon('image')}</button><button class="tool" data-action="link" title="插入链接" aria-label="插入链接">${icon('link')}</button>
-          <span class="toolbar-spacer"></span><button class="draft-button" data-action="save-draft" title="保存到草稿箱">暂存草稿</button><button class="publish-button" data-action="publish">发布</button>
+          <span class="toolbar-spacer"></span><button class="draft-button" data-action="save-draft" title="保存到草稿箱">暂存草稿</button><button class="publish-button" data-action="publish">发布</button><select id="text-alignment" class="alignment-select" title="文字排版" aria-label="文字排版"><option value="center">居中</option><option value="left">顶格</option></select>
         </div><div class="editor" id="editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="日志正文" data-placeholder="写下此刻的心情…">${defaultEditorHtml}</div></section>
         <div class="feed-controls card"><button class="feed-select" id="feed-toggle" aria-expanded="false"><span id="filter-label">我的全部日志</span>${icon('down')}</button><div class="feed-actions"><button class="icon-button page-export-trigger" data-action="export-page" title="导出页面图片" aria-label="导出页面图片">${icon('download')}</button><button class="icon-button" id="refresh-feed" title="刷新日志" aria-label="刷新日志">${icon('refresh')}</button><button class="icon-button" id="search-toggle" title="搜索与排序" aria-label="搜索与排序" aria-expanded="false">${icon('filter')}</button></div>
           <div class="popover filter-menu" id="filter-menu" hidden><button data-filter="all">我的全部日志</button><button data-filter="mine">我发布的日志</button><button data-filter="pinned">置顶日志</button><button data-action="drafts">草稿箱</button></div>
@@ -653,7 +679,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     if(state.currentDraft!==null) $('#editor').innerHTML = sanitize(state.currentDraft);
     Object.assign($('#editor').style,state.editorStyle||{});
     $('#font-size').value=String(Math.round(parseFloat(state.editorStyle?.fontSize||'22')/1.83));
-    bindEvents();updateProfile();renderFeed();applySettings();syncDecorativeAddress();resizeAlbumCaptions();
+    bindEvents();syncToolbar();updateProfile();renderFeed();applySettings();syncDecorativeAddress();resizeAlbumCaptions();
   }
   function syncDecorativeAddress(){
     const input=$('#decorative-address');if(!input)return;
@@ -663,7 +689,20 @@ OTHER DEALINGS IN THE SOFTWARE.
   function resizeAlbumCaption(input){input.style.height='auto';input.style.height=`${Math.max(48,input.scrollHeight+2)}px`;}
   function resizeAlbumCaptions(){$$('[data-album-caption]').forEach(resizeAlbumCaption);}
   function resizeStatNumber(input){const base=window.matchMedia('(max-width:700px)').matches?22:25;input.style.fontSize=`${Math.min(base,Math.max(12,Math.floor((input.clientWidth-6)/(Math.max(1,input.value.length)*.62))))}px`;}
-  function syncEditableStats(){$$('[data-stat]').forEach(input=>{if(document.activeElement!==input)input.value=state.stats[input.dataset.stat]??defaultStats[input.dataset.stat];resizeStatNumber(input);});}
+  function formatVisitorCount(value){
+    const count=Number(value)||0;
+    const short=(divisor,suffix)=>{const amount=Math.floor(count/divisor*10)/10;return `${amount}${suffix}`;};
+    if(count>=10000)return short(10000,'w');
+    if(count>=1000)return short(1000,'k');
+    return String(count);
+  }
+  function displayStatNumber(input){
+    const raw=String(state.stats[input.dataset.stat]??defaultStats[input.dataset.stat]);
+    input.value=input.dataset.stat==='visitors'?formatVisitorCount(raw):raw;
+    input.title=`点击修改${input.dataset.stat==='visitors'?'访客数量':input.dataset.stat==='journal'?'日志数量':'照片数量'}，自动保存（${raw}）`;
+    resizeStatNumber(input);
+  }
+  function syncEditableStats(){$$('[data-stat]').forEach(input=>{if(document.activeElement!==input)displayStatNumber(input);else resizeStatNumber(input);});}
   function sanitize(html){
     const template=document.createElement('template');template.innerHTML=html;
     const allowed = new Set(['DIV','P','BR','B','STRONG','I','EM','U','S','STRIKE','SPAN','FONT','UL','OL','LI','A','IMG','BLOCKQUOTE']);
@@ -687,10 +726,19 @@ OTHER DEALINGS IN THE SOFTWARE.
     $('#album-visibility').innerHTML=icon(state.settings.albumPublic?'eye':'eyeOff')+`<span>${state.settings.albumPublic?'所有人可见':'仅自己可见'}</span>`;
     syncEditableStats();
   }
+  function commentMarkup(comment,postId){
+    const name=comment.author||'我',time=comment.displayTime||formatTime(comment.created),photo=comment.avatar||state.profile.avatar;
+    const safePhoto=/^data:image\/(png|jpeg|webp|gif);base64,/i.test(photo||'')?photo:'';
+    return `<div class="comment-item"><button type="button" class="comment-avatar" data-comment-avatar="${escape(comment.id)}" data-post="${escape(postId)}" title="点击更换评论头像" aria-label="更换评论头像"><span class="comment-face">${safePhoto?`<img src="${escape(safePhoto)}" alt="评论头像">`:''}</span></button><div class="comment-body"><button type="button" class="comment-author" data-edit-comment="${escape(comment.id)}" data-post="${escape(postId)}" title="修改昵称和时间">${escape(name)}</button><p class="comment-text">${escape(comment.text)}</p>${comment.image?`<img class="comment-image" src="${escape(comment.image)}" alt="评论图片">`:''}<button type="button" class="comment-time" data-edit-comment="${escape(comment.id)}" data-post="${escape(postId)}" title="修改显示时间，例如一年前、一个月前、23:37">${escape(time)}</button></div><button type="button" class="comment-delete" data-delete-comment="${escape(comment.id)}" data-post="${escape(postId)}" aria-label="删除评论">×</button></div>`;
+  }
+  function openCommentEditor(postId,commentId){
+    const comment=state.posts.find(post=>post.id===postId)?.comments.find(item=>item.id===commentId);if(!comment)return;
+    openDialog('编辑评论信息',`<form id="comment-info-form" data-post="${escape(postId)}" data-comment="${escape(commentId)}"><label>评论昵称<input name="author" value="${escape(comment.author||'我')}" maxlength="50" required></label><label>显示时间<input name="displayTime" value="${escape(comment.displayTime||formatTime(comment.created))}" maxlength="60" placeholder="例如：一年前、一个月前、昨天23:37、14:30"></label><p class="dialog-help">时间可以填写任意文字，留空则显示原始发布时间。点击评论旁的小头像可上传自己的图片。</p></form>`,`${cancelButton}<button class="small-button primary" form="comment-info-form" type="submit">保存</button>`);
+  }
   function renderFeed(){
     let posts=state.posts.filter(p=>(filter!=='mine'||!p.pinned)&&(filter!=='pinned'||p.pinned)&&(!search||(p.text||'').toLowerCase().includes(search.toLowerCase())));
     posts=[...posts].sort((a,b)=>Number(!!b.pinned)-Number(!!a.pinned)||(sort==='oldest'?a.created-b.created:b.created-a.created));
-    $('#feed').innerHTML=posts.length?posts.map(post=>`<article class="post ${post.pinned?'pinned':''}" data-post-id="${post.id}">${avatar('post-avatar')}<div class="post-bubble card"><div class="post-content">${post.html?sanitize(post.html):escape(post.text)}</div>${!post.pinned?`<div class="post-meta"><time>${formatTime(post.created)}</time><div class="post-tools"><button data-edit-post="${post.id}">编辑</button><button data-delete-post="${post.id}">删除</button></div></div>`:''}<div class="comment-area"><div class="comment-list">${post.comments.map(comment=>`<div class="comment-item"><button class="comment-delete" data-delete-comment="${comment.id}" data-post="${post.id}" aria-label="删除评论">×</button><strong>我</strong><span>${escape(comment.text)}</span>${comment.image?`<img class="comment-image" src="${comment.image}" alt="评论图片">`:''}</div>`).join('')}</div><form class="comment-form" data-comment-for="${post.id}"><input name="comment" aria-label="添加评论" placeholder="Add Comments..." autocomplete="off" maxlength="1000"><button type="button" data-comment-image="${post.id}" aria-label="为评论添加图片" title="添加图片">${icon('image')}</button><button type="submit" title="发送评论" aria-label="发送评论">${icon('send')}</button></form><div class="comment-attachment" data-attachment-for="${post.id}" hidden></div></div></div></article>`).join(''):'<div class="card empty-state">没有找到相关日志</div>';
+    $('#feed').innerHTML=posts.length?posts.map(post=>`<article class="post ${post.pinned?'pinned':''}" data-post-id="${post.id}">${avatar('post-avatar')}<div class="post-bubble card"><div class="post-content"${post.pinned?' contenteditable="true" role="textbox" aria-multiline="true" aria-label="置顶日志正文" title="点击修改文字，自动保存" data-editable-post="'+post.id+'"':''}>${post.html?sanitize(post.html):escape(post.text)}</div>${post.pinned?'<div class="post-edit-hint">点击正文编辑 · 自动保存</div>':''}${!post.pinned?`<div class="post-meta"><time>${formatTime(post.created)}</time><div class="post-tools"><button data-edit-post="${post.id}">编辑</button><button data-delete-post="${post.id}">删除</button></div></div>`:''}<div class="comment-area"><div class="comment-list">${post.comments.map(comment=>commentMarkup(comment,post.id)).join('')}</div><form class="comment-form" data-comment-for="${post.id}"><input name="comment" aria-label="添加评论" placeholder="Add Comments..." autocomplete="off" maxlength="1000"><button type="button" data-comment-image="${post.id}" aria-label="为评论添加图片" title="添加图片">${icon('image')}</button><button type="submit" title="发送评论" aria-label="发送评论">${icon('send')}</button></form><div class="comment-attachment" data-attachment-for="${post.id}" hidden></div></div></div></article>`).join(''):'<div class="card empty-state">没有找到相关日志</div>';
     for(const [id,text] of commentDrafts){const input=$(`[data-comment-for="${id}"] input`);if(input)input.value=text;}
     for(const [id,src] of commentAttachments){const area=$(`[data-attachment-for="${id}"]`);if(area){area.hidden=false;area.innerHTML=`<img src="${src}" alt="待发送图片"><span>图片已添加</span><button type="button" data-remove-attachment="${id}">×</button>`;}}
     updateProfile();
@@ -812,8 +860,8 @@ OTHER DEALINGS IN THE SOFTWARE.
   function rememberSelection(){const sel=window.getSelection();if(sel.rangeCount&&$('#editor').contains(sel.anchorNode))savedRange=sel.getRangeAt(0).cloneRange();}
   function restoreSelection(){const ed=$('#editor');ed.focus();if(savedRange&&ed.contains(savedRange.commonAncestorContainer)){const sel=window.getSelection();sel.removeAllRanges();sel.addRange(savedRange);}else{const range=document.createRange();range.selectNodeContents(ed);range.collapse(false);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);}}
   function command(name,value=null){restoreSelection();document.execCommand(name,false,value);rememberSelection();persistEditor();syncToolbar();}
-  function persistEditor(){const ed=$('#editor');state.currentDraft=ed.innerHTML;state.editorStyle={fontSize:ed.style.fontSize,fontFamily:ed.style.fontFamily};save();}
-  function syncToolbar(){$$('[data-command]').forEach(b=>{const active=document.queryCommandState(b.dataset.command);b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));});}
+  function persistEditor(){const ed=$('#editor');state.currentDraft=ed.innerHTML;state.editorStyle={fontSize:ed.style.fontSize,fontFamily:ed.style.fontFamily,textAlign:ed.style.textAlign};save();}
+  function syncToolbar(){$('#text-alignment').value=getComputedStyle($('#editor')).textAlign==='left'?'left':'center';$$('[data-command]').forEach(b=>{const active=document.queryCommandState(b.dataset.command);b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));});}
   function closeMenus(){$$('#more-menu,#filter-menu').forEach(el=>el.hidden=true);$('#more-toggle').setAttribute('aria-expanded','false');$('#feed-toggle').setAttribute('aria-expanded','false');}
   const uid = () => crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36)+Math.random().toString(36).slice(2);
   async function imageData(file){
@@ -827,14 +875,14 @@ OTHER DEALINGS IN THE SOFTWARE.
   function publish(){
     const ed=$('#editor'),html=sanitize(ed.innerHTML),text=ed.innerText.trim();if(!text&&!ed.querySelector('img')){toast('先写一点内容吧');ed.focus();return;}
     if(text.length>20000){toast('日志正文请控制在 20000 字以内');return;}
-    const styledHtml=`<div style="font-size:${ed.style.fontSize||'22px'};font-family:${ed.style.fontFamily||'Arial, Microsoft YaHei, sans-serif'}">${html}</div>`;
+    const styledHtml=`<div style="font-size:${ed.style.fontSize||'22px'};font-family:${ed.style.fontFamily||'Arial, Microsoft YaHei, sans-serif'};text-align:${ed.style.textAlign||'center'}">${html}</div>`;
     const wasEditing=!!editingPost;
     if(!commit(()=>{if(editingPost){const post=state.posts.find(p=>p.id===editingPost);if(post){post.html=styledHtml;post.text=text;}}else state.posts.push({id:uid(),text,html:styledHtml,created:Date.now(),comments:[]});state.currentDraft='';}))return;
     editingPost=null;ed.innerHTML='';savedRange=null;filter='all';$('#filter-label').textContent='我的全部日志';search='';$('#post-search').value='';renderFeed();toast(wasEditing?'日志已更新':'日志已发布');
   }
   const actions={
     profile:openProfile,settings:openSettings,drafts:openDrafts,'close-dialog':()=>$('#dialog').close(),'export-page':openImageExport,'reset-image-export':resetImageExport,'download-page-image':downloadPageImage,
-    publish,'save-draft':()=>{const ed=$('#editor');if(!ed.innerText.trim()&&!ed.querySelector('img'))return toast('先写一点内容吧');if(commit(()=>state.drafts.unshift({id:uid(),html:sanitize(ed.innerHTML),style:{fontSize:ed.style.fontSize,fontFamily:ed.style.fontFamily},text:ed.innerText.trim(),created:Date.now()})))toast('已暂存到草稿箱');},
+    publish,'save-draft':()=>{const ed=$('#editor');if(!ed.innerText.trim()&&!ed.querySelector('img'))return toast('先写一点内容吧');if(commit(()=>state.drafts.unshift({id:uid(),html:sanitize(ed.innerHTML),style:{fontSize:ed.style.fontSize,fontFamily:ed.style.fontFamily,textAlign:ed.style.textAlign},text:ed.innerText.trim(),created:Date.now()})))toast('已暂存到草稿箱');},
     font:()=>{const ed=$('#editor'),serif=ed.style.fontFamily.startsWith('Georgia');ed.style.fontFamily=serif?'Arial, Microsoft YaHei, sans-serif':'Georgia, Noto Serif SC, serif';persistEditor();toast(serif?'已切换为无衬线字体':'已切换为衬线字体');},
     'editor-image':()=>chooseFile(src=>{command('insertHTML',`<img src="${src}" alt="日志图片"><br>`);}),
     link:()=>{rememberSelection();const sel=window.getSelection()?.toString()||'';openDialog('插入链接',`<form id="link-form"><label>显示文字<input name="text" value="${escape(sel)}" placeholder="链接文字" required maxlength="200"></label><label>链接地址<input name="url" type="url" placeholder="https://" required></label></form>`,`${cancelButton}<button class="small-button primary" form="link-form" type="submit">插入链接</button>`);},
@@ -863,8 +911,10 @@ OTHER DEALINGS IN THE SOFTWARE.
       const edit=e.target.closest('[data-edit-post]');if(edit){const post=state.posts.find(p=>p.id===edit.dataset.editPost);editingPost=post.id;$('#editor').innerHTML=sanitize(post.html||escape(post.text));$('#editor').focus();$('#editor').scrollIntoView({behavior:'smooth',block:'center'});toast('修改后点击发布即可保存');return;}
       const ci=e.target.closest('[data-comment-image]');if(ci){const postId=ci.dataset.commentImage;chooseFile(src=>{commentAttachments.set(postId,src);const area=$(`[data-attachment-for="${postId}"]`);area.hidden=false;area.innerHTML=`<img src="${src}" alt="待发送图片"><span>图片已添加</span><button type="button" data-remove-attachment="${postId}">×</button>`;});return;}
       const ra=e.target.closest('[data-remove-attachment]');if(ra){commentAttachments.delete(ra.dataset.removeAttachment);$(`[data-attachment-for="${ra.dataset.removeAttachment}"]`).hidden=true;return;}
+      const commentInfo=e.target.closest('[data-edit-comment]');if(commentInfo){openCommentEditor(commentInfo.dataset.post,commentInfo.dataset.editComment);return;}
+      const commentAvatar=e.target.closest('[data-comment-avatar]');if(commentAvatar){const postId=commentAvatar.dataset.post,commentId=commentAvatar.dataset.commentAvatar;chooseFile(src=>{const comment=state.posts.find(post=>post.id===postId)?.comments.find(item=>item.id===commentId);if(comment&&commit(()=>comment.avatar=src)){renderFeed();toast('评论头像已更新');}});return;}
       const dc=e.target.closest('[data-delete-comment]');if(dc){if(commit(()=>{const post=state.posts.find(p=>p.id===dc.dataset.post);post.comments=post.comments.filter(c=>c.id!==dc.dataset.deleteComment);}))renderFeed();return;}
-      const ld=e.target.closest('[data-load-draft]');if(ld){const draft=state.drafts.find(d=>d.id===ld.dataset.loadDraft);editingPost=null;savedRange=null;switchTab('journal');$('#editor').innerHTML=sanitize(draft.html);$('#editor').style.fontSize=draft.style?.fontSize||'';$('#editor').style.fontFamily=draft.style?.fontFamily||'';persistEditor();$('#dialog').close();$('#editor').focus();toast('草稿已载入');return;}
+      const ld=e.target.closest('[data-load-draft]');if(ld){const draft=state.drafts.find(d=>d.id===ld.dataset.loadDraft);editingPost=null;savedRange=null;switchTab('journal');$('#editor').innerHTML=sanitize(draft.html);$('#editor').style.fontSize=draft.style?.fontSize||'';$('#editor').style.fontFamily=draft.style?.fontFamily||'';$('#editor').style.textAlign=draft.style?.textAlign||'center';persistEditor();syncToolbar();$('#dialog').close();$('#editor').focus();toast('草稿已载入');return;}
       const dd=e.target.closest('[data-delete-draft]');if(dd){state.drafts=state.drafts.filter(d=>d.id!==dd.dataset.deleteDraft);save();openDrafts();return;}
       const dm=e.target.closest('[data-delete-message]');if(dm){state.messages=state.messages.filter(m=>m.id!==dm.dataset.deleteMessage);save();renderWall();return;}
       const dp=e.target.closest('[data-delete-photo]');if(dp){confirmDeletePhoto(dp.dataset.deletePhoto);return;}
@@ -879,16 +929,21 @@ OTHER DEALINGS IN THE SOFTWARE.
     $('#decorative-address')?.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.target.blur();}});
     window.addEventListener('resize',resizeAlbumCaptions);
     document.addEventListener('input',e=>{if(!e.target.matches('[data-stat]'))return;const input=e.target;input.value=input.value.normalize('NFKC').replace(/[^0-9]/g,'').slice(0,9);state.stats[input.dataset.stat]=input.value;resizeStatNumber(input);save();});
-    $$('[data-stat]').forEach(input=>{input.addEventListener('blur',()=>{if(!input.value)input.value=defaultStats[input.dataset.stat];state.stats[input.dataset.stat]=input.value;resizeStatNumber(input);save();});input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();input.blur();}});});
+    $$('[data-stat]').forEach(input=>{input.addEventListener('focus',()=>{input.value=String(state.stats[input.dataset.stat]??defaultStats[input.dataset.stat]);resizeStatNumber(input);input.select();});input.addEventListener('blur',()=>{if(!input.value)input.value=defaultStats[input.dataset.stat];state.stats[input.dataset.stat]=input.value;save();displayStatNumber(input);});input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();input.blur();}});});
     window.addEventListener('resize',syncEditableStats);
     $('#refresh-feed').addEventListener('click',()=>{const btn=$('#refresh-feed');btn.classList.add('spin');renderFeed();setTimeout(()=>btn.classList.remove('spin'),650);toast('日志已刷新');});
     $$('.toolbar button').forEach(button=>button.addEventListener('mousedown',e=>{rememberSelection();e.preventDefault();}));
     $('#editor').addEventListener('input',()=>{persistEditor();syncToolbar();});$('#editor').addEventListener('keyup',()=>{rememberSelection();syncToolbar();});$('#editor').addEventListener('mouseup',()=>{rememberSelection();syncToolbar();});
     $('#editor').addEventListener('paste',e=>{e.preventDefault();const text=e.clipboardData.getData('text/plain');document.execCommand('insertText',false,text);persistEditor();});
     $('#font-size').addEventListener('change',e=>{const size=Number(e.target.value)*1.83;const sel=window.getSelection();if(sel.rangeCount&&!sel.isCollapsed&&$('#editor').contains(sel.anchorNode)){restoreSelection();document.execCommand('fontSize',false,'7');$$('#editor font[size="7"]').forEach(el=>{el.removeAttribute('size');el.style.fontSize=`${size}px`;});}else $('#editor').style.fontSize=`${size}px`;persistEditor();});
+    $('#text-alignment').addEventListener('mousedown',rememberSelection);
+    $('#text-alignment').addEventListener('change',e=>{const alignment=e.target.value==='left'?'left':'center',ed=$('#editor');ed.style.textAlign=alignment;ed.querySelectorAll('div,p,ul,ol,li,blockquote').forEach(block=>block.style.textAlign=alignment);persistEditor();restoreSelection();syncToolbar();});
+    document.addEventListener('input',e=>{const content=e.target.closest('[data-editable-post]');if(!content)return;const post=state.posts.find(item=>item.id===content.dataset.editablePost);if(post)commit(()=>{post.html=sanitize(content.innerHTML);post.text=content.innerText;});});
+    document.addEventListener('paste',e=>{if(!e.target.closest('[data-editable-post]'))return;e.preventDefault();document.execCommand('insertText',false,e.clipboardData.getData('text/plain'));});
     $('#font-color').addEventListener('input',e=>{$('#color-dot').style.background=e.target.value;command('foreColor',e.target.value);});
     document.addEventListener('submit',e=>{
       if(e.target.matches('[data-comment-for]')){e.preventDefault();const id=e.target.dataset.commentFor,input=e.target.elements.comment,text=input.value.trim(),image=commentAttachments.get(id);if(!text&&!image){toast('写点评论或添加一张图片吧');input.focus();return;}if(!commit(()=>state.posts.find(p=>p.id===id).comments.push({id:uid(),text,image,created:Date.now()})))return;commentAttachments.delete(id);commentDrafts.delete(id);renderFeed();toast('评论已发送');}
+      if(e.target.id==='comment-info-form'){e.preventDefault();const form=e.target,data=new FormData(form),author=String(data.get('author')||'').trim(),displayTime=String(data.get('displayTime')||'').trim();if(!author)return;const comment=state.posts.find(post=>post.id===form.dataset.post)?.comments.find(item=>item.id===form.dataset.comment);if(comment&&commit(()=>Object.assign(comment,{author,displayTime}))){$('#dialog').close();renderFeed();toast('评论信息已保存');}}
       if(e.target.id==='profile-form'){e.preventDefault();const f=new FormData(e.target);if(!f.get('name').trim())return;if(!commit(()=>Object.assign(state.profile,{name:f.get('name').trim(),mood:f.get('mood').trim(),bio:f.get('bio').trim()})))return;updateProfile();$('#dialog').close();toast('个人资料已保存');}
       if(e.target.id==='settings-form'){e.preventDefault();const f=new FormData(e.target);if(!commit(()=>{state.settings.theme=f.get('theme');state.settings.compact=f.has('compact');}))return;applySettings();$('#dialog').close();toast('主页设置已保存');}
       if(e.target.id==='link-form'){e.preventDefault();const f=new FormData(e.target),url=f.get('url').trim();if(!/^https?:\/\//i.test(url)){toast('请输入以 https:// 或 http:// 开头的网址');return;}$('#dialog').close();command('insertHTML',`<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(f.get('text'))}</a>`);}
