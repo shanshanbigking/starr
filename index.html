@@ -785,9 +785,9 @@ OTHER DEALINGS IN THE SOFTWARE.
   };
   const icon = name => `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[name] || icons.plus}</svg>`;
   const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-  let embeddedDefaultSeed=null;
-  try{const seed=JSON.parse(document.getElementById('saved-default-view')?.textContent||'null');if(seed?.state?.profile&&Array.isArray(seed.state.posts)&&seed.state.settings)embeddedDefaultSeed=seed;}catch{}
-  const storageKey = 'pyon.nyang.home.v1'+(embeddedDefaultSeed?'.'+embeddedDefaultSeed.id:'');
+  // This release starts from the reference content in every new browser.
+  // Later edits persist separately from the previous release's local data.
+  const storageKey='pyon.nyang.home.v1.reference-default-v2';
   const defaultDecorativeAddress='gotothesky1205.com';
   const defaultStats={journal:'2',visitors:'11',photos:'5'};
   // Fixed slot IDs keep replacements, captions, and persisted deletions independent of gallery order.
@@ -807,24 +807,23 @@ OTHER DEALINGS IN THE SOFTWARE.
     return normalized.map((photo,slot)=>Array.isArray(value)&&value[slot]&&typeof value[slot]==='object'?photo:null);
   }
   const previousPinnedText = '主页美化随意更新\n主要只发扣扣 大范围公开会上传相关小手机社区/njg\n不要问我相关问题 可以点击标签/搜索\n美化有问题可以在扣扣/这个平台：sx/plq\n留言没回复不是针对 也许没看到 不要多想\n然后就是我的一些三次属\n李相沅 | 金奎彬 | 前田陆\n女团博爱 有隐属 大部分无雷\n\n请不要一上来就用命令语气和我沟通\n我人很好相处的\n但是如果你不礼貌我也会很不礼貌的 -᷅_ -᷄\n\n以上就是我@pyon.nyang_';
-  const pinnedText='这一切都太过沉重。\n我们一起离开这里，一起穿过偏执的命运、萧条封锁的幻觉和轻飘飘的爱。然后飞翔、飞翔、绕过大山、江流、眼泪、灵魂和寥寥几笔的所有。\n亲爱的，宇宙只是一只小鸟，但小鸟是我们。我们一起飞向一个充满相信和温暖的地方好不好。';
+  const pinnedText='我由衷的祝愿你远离一切痛苦。当自己给予自己幸福和自由的时候，我们再去拿出力气原谅这个可悲的苦难的世界。可悲在真的有人不爱呱呱坠地的骨肉，苦难在所有人都在迷茫。大家都停留在一个陌生的地方打着不知道为什么还要打的仗，之后还要经历一场目标明确但是过程艰辛的摸索才能去到想去的地方。我们先生存，再幸福，一直到最后才是原谅与和解别人带来的伤害。苦难不能带来什么，只能带来你真的很坚强的证明。辛苦了，你一定会幸福。';
   const defaultEditorLines=['我们不要在这里，','跟我回去十八岁。','躲到台大校园杜鹃花从下，','不要被命运找到。'];
-  const defaultEditorHtml=defaultEditorLines.map(line=>`<div>${escape(line)}</div>`).join('');
+  const defaultEditorHtml=`<div>${escape(defaultEditorLines.join(''))}</div>`;
   const builtInDefaultState = () => ({
     homeIntro:{title:'欢迎来到我的小小世界',text:'一些日常，一些喜欢，还有留给你的空白。'},
     profile:{name:'ID',handle:'name',mood:'我的羽毛也很重，不要对着我哭了。',bio:'宇宙。',avatar:''},
-    posts:[{id:'welcome',text:pinnedText,pinned:true,created:0,comments:[]}],
-    photos:[],albumSlots:createAlbumSlots(),albumSlotTrash:[null,null,null,null],messages:[],drafts:[],currentDraft:null,editorStyle:{},albumCaptions:['',''],albumCaptionSizes:[14,14],stats:{...defaultStats},contentPreset:'mountain-v1',settings:{commentLayout:'outgoing',theme:'default',compact:false,profilePublic:false,albumPublic:true,decorativeAddress:defaultDecorativeAddress}
+    posts:[{id:'welcome',text:pinnedText,pinned:true,created:1036422300000,displayDate:'2002·11·05',displayClock:'11:05',comments:[{id:'default-thanks',author:'id',text:'谢谢。',created:1792627200000,displayDate:'2026·10·22',avatar:''}]}],
+    photos:[],albumSlots:createAlbumSlots(),albumSlotTrash:[null,null,null,null],messages:[],drafts:[],initialTab:'journal',currentDraft:defaultEditorHtml,editorStyle:{textAlign:'left',fontSize:'22px'},albumCaptions:['',''],albumCaptionSizes:[14,14],stats:{...defaultStats},contentPreset:'mountain-v1',settings:{commentLayout:'outgoing',theme:'default',compact:false,profilePublic:false,albumPublic:true,decorativeAddress:defaultDecorativeAddress}
   });
   const defaultViewKey=storageKey+'.default-view.v1';
-  let savedDefaultView=embeddedDefaultSeed?.state||null;
-  try{const value=JSON.parse(localStorage.getItem(defaultViewKey));if(value&&value.profile&&Array.isArray(value.posts)&&value.settings)savedDefaultView=value;}catch{}
+  let savedDefaultView=null;
   function syncAddressPreset(snapshot){
     if(!snapshot?.settings||snapshot.settings.decorativeAddressPreset==='gotothesky1205-v1')return false;
     snapshot.settings.decorativeAddress=defaultDecorativeAddress;snapshot.settings.decorativeAddressPreset='gotothesky1205-v1';return true;
   }
   if(syncAddressPreset(savedDefaultView)){try{localStorage.setItem(defaultViewKey,JSON.stringify(savedDefaultView));}catch{}}
-  const defaultState=()=>JSON.parse(JSON.stringify(savedDefaultView||builtInDefaultState()));
+  const defaultState=()=>JSON.parse(JSON.stringify(builtInDefaultState()));
   let state;
   try {state = JSON.parse(localStorage.getItem(storageKey)) || defaultState();} catch {state = defaultState();}
   const previousPreset=state.contentPreset;
@@ -847,9 +846,7 @@ OTHER DEALINGS IN THE SOFTWARE.
   state.albumSlots=normalizeAlbumSlots(state.albumSlots);
   state.albumSlotTrash=normalizeAlbumSlotTrash(state.albumSlotTrash);
   state.stats=Object.fromEntries(Object.entries(defaultStats).map(([key,fallback])=>[key,/^\d{1,9}$/.test(String(state.stats?.[key]??''))?String(state.stats[key]):fallback]));
-  const openingDefaultVersion='current-interface-v1';
-  const needsOpeningDefault=state.settings.openingDefaultVersion!==openingDefaultVersion;
-  let tab = !needsOpeningDefault&&['home','journal','album','wall'].includes(state.initialTab)?state.initialTab:'journal', filter = 'all', search = '', sort = 'newest', savedRange, activeFormattingTarget = null, lightboxIndex = 0, editingPost = null;
+  let tab = ['home','journal','album','wall'].includes(state.initialTab)?state.initialTab:'journal', filter = 'all', search = '', sort = 'newest', savedRange, activeFormattingTarget = null, lightboxIndex = 0, editingPost = null;
   const commentAttachments = new Map(), commentDrafts = new Map();
   let wallDraft = '',removedPhoto=null;
   const allPhotos = () => [...state.albumSlots.filter(Boolean),...state.photos];
@@ -1317,14 +1314,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     $('#dialog').addEventListener('click',e=>{if(e.target===$('#dialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
     document.addEventListener('keydown',e=>{if($('#dialog').open&&$('#dialog').classList.contains('lightbox')){if(e.key==='ArrowLeft')openLightbox(lightboxIndex-1);if(e.key==='ArrowRight')openLightbox(lightboxIndex+1);}if((e.ctrlKey||e.metaKey)&&e.key==='Enter'&&document.activeElement===$('#editor')){e.preventDefault();publish();}if(e.key==='Escape')closeMenus();});
   }
-  // On the next opening, save the existing local interface as its default.
-  // Keep content and appearance intact, and start on the journal shown in the reference.
-  const needsDefaultSnapshot=needsOpeningDefault||!savedDefaultView;
-  if(needsOpeningDefault){state.initialTab='journal';state.settings.openingDefaultVersion=openingDefaultVersion;}
-  const capturedDefault=needsDefaultSnapshot?saveDefaultView(false):true;
-  if(needsOpeningDefault&&capturedDefault)save();
   renderShell();switchTab(tab);
-  if(!capturedDefault)toast('默认界面未能保存，请先导出数据备份并清理浏览器空间');
   if(migrateDefaults||upgradedImageExport||upgradedImageExportBackground||syncedDecorativeAddress)save();
 })();
 </script>
