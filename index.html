@@ -196,6 +196,12 @@ body.soft-blue{--page:#f1f5f7;--line:#d8e1e7;--blue:#7f9aab}body.soft-blue .tool
     try {
       const doc = frame.contentDocument;
       doc.documentElement.lang = document.documentElement.lang || 'zh-CN';
+      // The export has its own desktop viewport, even when the live page is
+      // open on a phone. Do not inherit mobile text autosizing or page zoom.
+      const viewport = doc.createElement('meta');
+      viewport.name = 'viewport';
+      viewport.content = `width=${PAGE_WIDTH},initial-scale=1`;
+      doc.head.append(viewport);
       const base = doc.createElement('base');
       base.href = document.baseURI;
       doc.head.append(base);
@@ -212,7 +218,7 @@ body.soft-blue{--page:#f1f5f7;--line:#d8e1e7;--blue:#7f9aab}body.soft-blue .tool
         doc.head.append(copy);
       }
       const reset = doc.createElement('style');
-      reset.textContent = `html,body{width:${PAGE_WIDTH}px!important;min-width:${PAGE_WIDTH}px!important;max-width:${PAGE_WIDTH}px!important;margin:0!important;padding:0!important;overflow:visible!important;background:transparent!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}html{scrollbar-gutter:auto!important}body{position:static!important}${OMIT}{display:none!important}.site-shell{width:${PAGE_WIDTH}px!important;max-width:${PAGE_WIDTH}px!important}.decorative-browser{width:${PAGE_WIDTH}px!important;max-width:${PAGE_WIDTH}px!important}.page-export-paper{display:block;position:relative;width:${PAGE_WIDTH}px;overflow:hidden;border-radius:24px;background:var(--page,#f5f5f5);color:var(--ink,#171717)}.page-export-paper>#app{display:block}`;
+      reset.textContent = `html,body{width:${PAGE_WIDTH}px!important;min-width:${PAGE_WIDTH}px!important;max-width:${PAGE_WIDTH}px!important;margin:0!important;padding:0!important;overflow:visible!important;background:transparent!important;zoom:1!important;transform:none!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}html{scrollbar-gutter:auto!important}body{position:static!important}${OMIT}{display:none!important}.site-shell{width:${PAGE_WIDTH}px!important;max-width:${PAGE_WIDTH}px!important}.decorative-browser{width:${PAGE_WIDTH}px!important;max-width:${PAGE_WIDTH}px!important}.page-export-paper{display:block;position:static;width:${PAGE_WIDTH}px;overflow:hidden;border-radius:24px;background:var(--page,#f5f5f5);color:var(--ink,#171717)}.page-export-paper,.page-export-paper>#app,.site-shell{zoom:1!important;transform:none!important}.page-export-paper>#app{display:block}`;
       doc.head.append(reset);
       doc.body.className = document.body.className;
       const paper = doc.createElement('div');
@@ -360,12 +366,15 @@ body.soft-blue{--page:#f1f5f7;--line:#d8e1e7;--blue:#7f9aab}body.soft-blue .tool
     return clone;
   }
 
-  async function rasterize(page, renderScale) {
+  async function rasterize(page) {
     const doc = page.doc;
-    const intrinsicScale = Math.max(1, renderScale);
     const svg = doc.createElementNS(SVG_NS, 'svg');
-    svg.setAttribute('width', Math.round(page.width * intrinsicScale));
-    svg.setAttribute('height', Math.round(page.height * intrinsicScale));
+    // Keep SVG pixels and foreignObject CSS pixels one-to-one. WebKit can
+    // ignore the viewBox scale for positioned HTML inside foreignObject; a
+    // 2x intrinsic SVG then leaves the whole page in its upper-left quarter.
+    // Apply the chosen output resolution only on the final canvas instead.
+    svg.setAttribute('width', `${page.width}px`);
+    svg.setAttribute('height', `${page.height}px`);
     svg.setAttribute('viewBox', `0 0 ${page.width} ${page.height}`);
     const foreign = doc.createElementNS(SVG_NS, 'foreignObject');
     foreign.setAttribute('width', page.width);
@@ -374,6 +383,11 @@ body.soft-blue{--page:#f1f5f7;--line:#d8e1e7;--blue:#7f9aab}body.soft-blue .tool
     foreign.setAttribute('y', '0');
     const snapshot = inlineTree(page.paper, page.frame.contentWindow, doc);
     snapshot.setAttribute('xmlns', XHTML);
+    snapshot.style.setProperty('width', `${page.width}px`, 'important');
+    snapshot.style.setProperty('height', `${page.height}px`, 'important');
+    snapshot.style.setProperty('position', 'static', 'important');
+    snapshot.style.setProperty('zoom', '1', 'important');
+    snapshot.style.setProperty('transform', 'none', 'important');
     foreign.append(snapshot);
     svg.append(foreign);
     const serialized = new XMLSerializer().serializeToString(svg);
@@ -423,7 +437,7 @@ body.soft-blue{--page:#f1f5f7;--line:#d8e1e7;--blue:#7f9aab}body.soft-blue .tool
       if (pixelWidth > 16384 || pixelHeight > 32760 || pixelWidth * pixelHeight > 100000000) {
         throw fail('当前日志页面较长，请选择标准清晰度，或筛选较少的日志后导出');
       }
-      const image = await rasterize(page, config.scale);
+      const image = await rasterize(page);
       const canvas = document.createElement('canvas');
       canvas.width = pixelWidth;
       canvas.height = pixelHeight;
@@ -443,16 +457,22 @@ body.soft-blue{--page:#f1f5f7;--line:#d8e1e7;--blue:#7f9aab}body.soft-blue .tool
       }
       const x = config.padding;
       const y = (height - page.height) / 2;
+      // The selected background belongs outside the webpage, never inside
+      // it. Paint the opaque page separately from the SVG so a WebKit
+      // foreignObject background/compositing quirk cannot reveal a gradient.
+      // Transparent mode removes only the outside background, not this page.
+      context.save();
+      context.fillStyle = '#f5f5f5';
+      const pageColor = page.frame.contentWindow.getComputedStyle(page.paper).getPropertyValue('--page').trim();
+      if (/^#[0-9a-f]{6}$/i.test(pageColor)) context.fillStyle = pageColor;
       if (config.background !== 'transparent' && config.padding > 0) {
-        context.save();
-        context.fillStyle = page.frame.contentWindow.getComputedStyle(page.paper).backgroundColor;
         context.shadowColor = 'rgba(0,0,0,.18)';
         context.shadowBlur = 30;
         context.shadowOffsetY = 16;
-        roundRect(context, x, y, page.width, page.height, 24);
-        context.fill();
-        context.restore();
       }
+      roundRect(context, x, y, page.width, page.height, 24);
+      context.fill();
+      context.restore();
       context.save();
       roundRect(context, x, y, page.width, page.height, 24);
       context.clip();
